@@ -20,10 +20,13 @@
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script>
     document.documentElement.classList.add('js');
+    var mode = new URLSearchParams(location.search).get('mode');
+    if (mode === 'off') location.replace('off/');
+    else if (mode !== 'piste') document.documentElement.classList.add('gate');
     try {
       if (sessionStorage.getItem('ky-intro') || matchMedia('(prefers-reduced-motion: reduce)').matches)
         document.documentElement.classList.add('intro-seen');
@@ -33,6 +36,32 @@
 </head>
 <body>
   <a class="skip" href="#arsenal">Skip to projects</a>
+
+  <!-- Mode chooser: two ways to meet me. Plain links, enhanced by js/gate.js -->
+  <div id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-q">
+    <a class="gate-side gate-piste" href="?mode=piste" data-mode="piste">
+      <span class="gate-copy">
+        <span class="gate-kicker"><i class="lamp lamp-green"></i> Mode 01</span>
+        <span class="gate-name">On the Piste</span>
+        <span class="gate-desc">The builder at full speed. Neon, sound, a terminal and a reflex drill.</span>
+        <span class="gate-cta">Enter the strip <span aria-hidden="true">⟶</span></span>
+      </span>
+      <i class="gate-fencer" aria-hidden="true"></i>
+    </a>
+    <a class="gate-side gate-off" href="off/" data-mode="off">
+      <span class="gate-ink" aria-hidden="true"><svg viewBox="0 0 240 180" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"> <path pathLength="1" d="M 50 72 C 57 61 68 44 75 36 C 96 39 125 44 142 62 C 159 82 171 112 196 139 C 210 153 224 165 232 172 C 213 166 195 161 177 155 C 146 148 118 144 98 126 C 78 108 61 87 50 72 Z"/> <path pathLength="1" d="M 57 76 C 76 81 96 92 113 107 C 117 110 120 111 124 112 M 81 44 C 90 61 106 80 122 94 C 125 97 127 99 128 102"/> <path pathLength="1" d="M 142 104 C 147 108 145 114 141 115 C 137 116 132 112 133 108 C 133 104 138 101 142 104 Z"/> <path pathLength="1" d="M 144 113 C 171 132 205 153 232 172"/> <path pathLength="1" d="M 221 168 C 214 165 215 172 221 171 C 225 170 229 170 232 172"/> </svg></span>
+      <span class="gate-copy">
+        <span class="gate-kicker">Mode 02</span>
+        <span class="gate-name">Off the Piste</span>
+        <span class="gate-desc">The person, at a quieter pace. Ink, paper and the things I've made.</span>
+        <span class="gate-cta">Turn the page <span aria-hidden="true">⟶</span></span>
+      </span>
+    </a>
+    <div class="gate-center" aria-hidden="true">
+      <span class="gate-who">Kevin Y. · KYUAN</span>
+    </div>
+    <p class="gate-q" id="gate-q">Choose how to meet me</p>
+  </div>
 
   <canvas id="field" aria-hidden="true"></canvas>
   <div class="atmos" aria-hidden="true"></div>
@@ -70,6 +99,7 @@
     </nav>
 
     <div class="hud-actions">
+      <a class="hud-btn hud-mode" href="off/" aria-label="Switch to Off the Piste mode"><i class="hud-paper" aria-hidden="true"></i><span class="lbl">OFF PISTE</span></a>
       <button class="hud-btn" id="snd" type="button" aria-pressed="false" aria-label="Toggle sound">
         <svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-sound-off"></use></svg><span class="lbl">SND OFF</span>
       </button>

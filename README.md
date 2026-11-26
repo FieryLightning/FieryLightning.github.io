@@ -3,6 +3,15 @@
 Personal profile site: AI tools and apps I've built, themed around sabre fencing.
 Static files only (HTML, CSS, ES modules, SVG), so it runs on GitHub Pages as is. No build step, no dependencies.
 
+## Two modes
+
+A visit to the root opens a chooser, split along a diagonal sabre cut:
+
+- **On the Piste** (`/?mode=piste`): the builder at full speed. Neon HUD, GPU particle field, sound, terminal, reflex drill. Everything below.
+- **Off the Piste** (`/off/`): the person, at a quieter pace. Warm paper, serif type, and a single ink line that draws down the page as you read, threading through hand-drawn sketches of each build. Ends in a sabre and a vermillion seal.
+
+Both options are plain links, so the chooser works without JavaScript. The GPU field and the intro only start once On the Piste is chosen. Choosing sets `?mode=piste` in the URL, so a reload or a shared link skips the chooser; `/?mode=off` redirects to `/off/`. Each mode has a switch to the other (HUD button / terminal `off`; the pill top right of `/off/`). Cross-page View Transitions smooth the change where supported.
+
 ## What's inside
 
 | Piece | How it works |
@@ -25,9 +34,10 @@ Everything lives in **`js/data.js`**:
 
 - `profile`: name, handle, GitHub, taglines, bio. Set `email` to show a mail button.
 - `loadout`: the skills grid.
+- `offPiste`: the wording used only by Off the Piste (headline, note, closing line). `off/index.html` repeats it as static text for no-JS visitors.
 - `projects`: one entry per build. **Give a project a `url` and it shows as LIVE (green lamp, clickable). Leave `url` out and it shows as text only (red lamp).** `source` adds an optional public repo link.
 
-Logos go in `assets/logos/`. Counts, headings, the scoreboard and the terminal all update from the data.
+Logos go in `assets/logos/`. Each project also gets an ink drawing on Off the Piste: `assets/ink/<project id>.svg` (240×180, strokes only, one `class="accent"` path in vermillion; paths draw in document order). Counts, headings, the scoreboard and the terminal all update from the data.
 
 ## Preview locally
 
@@ -68,7 +78,9 @@ js/seg.js           7-segment display renderer
 js/terminal.js      in-page terminal
 js/reflex.js        reflex drill
 js/data.js          profile + projects  ← edit this
-assets/             logos, brand mark, art, icon sprite, social card
+js/gate.js          mode chooser
+off/                Off the Piste: index.html, off.css, off.js (ink thread, drawings)
+assets/             logos, brand mark, art, ink drawings, icon sprite, social card
 ```
 
-Brand mark, The Dive logo, sabre, fencers, piste, icon sprite and social card: original SVGs drawn by Codex from a design brief. The other app logos come from each app's own repo.
+Brand mark, The Dive logo, sabre, fencers, piste, ink drawings, icon sprite and social card: original SVGs drawn by Codex from a design brief. The other app logos come from each app's own repo.

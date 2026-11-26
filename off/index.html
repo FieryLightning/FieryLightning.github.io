@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Kevin Y. — Off the Piste</title>
+  <meta name="description" content="Kevin Y., builder of AI tools, apps and platforms. The quiet version: ink, paper and the things I've made.">
+  <meta name="theme-color" content="#f3eee4">
+  <meta name="color-scheme" content="light">
+  <link rel="canonical" href="https://fierylightning.github.io/off/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kevin Y. — Off the Piste">
+  <meta property="og:description" content="Builder of AI tools, apps and platforms. Ink, paper and the things I've made.">
+  <meta property="og:url" content="https://fierylightning.github.io/off/">
+  <meta property="og:image" content="https://fierylightning.github.io/assets/og/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
+  <link rel="stylesheet" href="off.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="module" src="off.js"></script>
+</head>
+<body>
+  <a class="skip" href="#works">Skip to the things I've made</a>
+
+  <!-- one ink line runs the length of the page and draws as you read -->
+  <svg class="thread" aria-hidden="true"><path class="thread-line" d=""/><circle class="thread-nib" r="3.2"/></svg>
+
+  <header class="bar">
+    <a class="bar-name" href="#top">Kevin Y.</a>
+    <a class="bar-mode" href="../?mode=piste" aria-label="Switch to On the Piste mode">
+      <i class="bar-fencer" aria-hidden="true"></i><span>On the Piste</span>
+    </a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow"><i></i>Off the Piste</p>
+        <h1 class="hero-name" id="hero-name">Kevin <em>Y.</em></h1>
+        <p class="hero-line" id="hero-line" data-rise>I build AI tools that respect the person using them.</p>
+        <p class="hero-meta" id="hero-meta" data-rise>CS graduate, University of Wisconsin–Madison · Builder of AI tools, apps &amp; platforms</p>
+      </div>
+      <figure class="ink ink-nib" data-ink="nib" aria-hidden="true"></figure>
+      <p class="hero-cue" aria-hidden="true">read on <span>↓</span></p>
+    </section>
+
+    <section class="note" data-thread="right">
+      <p class="kicker" data-rise>§ 01 · A note</p>
+      <div class="note-body" id="note"><p class="lede">I build software the way I fence sabre: pick the line, commit, cut clean, ship.</p><p>Lately that means study coaches that work offline, video-to-guide pipelines that can run entirely on a Mac, a calendar reader that refuses to guess a date, and FormuAI, a drug-formulation platform I took over and now develop.</p></div>
+    </section>
+
+    <section class="works" id="works">
+      <header class="works-head" data-thread="right">
+        <p class="kicker" data-rise>§ 02 · The work</p>
+        <h2 data-rise>Things I've <em>made</em></h2>
+        <p class="works-sub" id="works-sub" data-rise></p>
+      </header>
+      <div class="plates" id="plates">
+        <noscript>
+          <ul class="plates-plain">
+            <li><a href="https://fierylightning.github.io/the-dive/">The Dive</a> — learning AI, by depth</li>
+            <li><a href="https://studyarea.vercel.app">StudyArea</a> — offline-first AI study coach</li>
+            <li><a href="https://ai-coding-field-guide.vercel.app">AI Coding Field Guide</a> — your first app, with an AI pair</li>
+            <li><a href="https://formuai-v1.vercel.app">FormuAI</a> — AI platform for drug formulation</li>
+            <li>ClearSteps — video to step-by-step guide (private build)</li>
+            <li>KevCal — photo to calendar (runs locally) · <a href="https://github.com/FieryLightning/KevCal">source</a></li>
+          </ul>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="toolbox" data-thread="left">
+      <p class="kicker" data-rise>§ 03 · The toolbox</p>
+      <h2 data-rise>What I <em>reach for</em></h2>
+      <div class="tools" id="tools"></div>
+    </section>
+
+    <section class="coda">
+      <figure class="ink ink-sabre" data-ink="sabre" aria-hidden="true"></figure>
+      <p class="coda-text" id="coda" data-rise>On the piste, I fence sabre. It is the fastest weapon in fencing: the whole target above the waist is open, and a touch is decided in a fraction of a second.</p>
+      <a class="coda-link" href="../?mode=piste" data-rise>See me on the piste <span aria-hidden="true">⟶</span></a>
+      <div class="sign" data-rise>
+        <p class="sign-label">Say hello</p>
+        <p class="sign-links" id="sign-links"><a href="https://github.com/FieryLightning">github.com/FieryLightning</a></p>
+        <span class="seal" id="seal" aria-hidden="true"><span>KY</span></span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© <span id="year">2026</span> Kevin Y.</span>
+    <span>Ink on a static page · hand-built, no build step</span>
+  </footer>
+</body>
+</html>

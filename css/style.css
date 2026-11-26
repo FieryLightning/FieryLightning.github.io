@@ -28,6 +28,8 @@
   --ease: cubic-bezier(.2, .8, .2, 1);
 }
 
+@view-transition { navigation: auto; }
+
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
@@ -787,4 +789,150 @@ b.r { color: var(--red); font-weight: 600; }
     transition-duration: .001ms !important;
   }
   .ticker-track { animation: none; }
+}
+
+/* ── mode chooser ───────────────────────────────────────────────
+   Two full-screen panels; the paper one sits on top, clipped along a
+   diagonal seam (a sabre cut). Hover leans the seam, a choice sweeps
+   it across the screen.                                             */
+#gate { display: none; }
+.js.gate #gate { display: block; position: fixed; inset: 0; z-index: 150; overflow: hidden; transition: opacity .5s var(--ease) .45s; }
+.js.gate #intro { display: none; }
+.js.gate body { overflow: hidden; }
+#gate[data-chosen="piste"] { opacity: 0; pointer-events: none; }
+
+:root {
+  --paper: #f3eee4;
+  --ink: #1c1a17;
+  --vermillion: #c2412d;
+  --serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .25 0 0 0 0 .16 0 0 0 .9 -.32'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --seam: cubic-bezier(.76, 0, .18, 1);
+}
+
+.gate-side { position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; text-decoration: none; outline: none; -webkit-tap-highlight-color: transparent; }
+.gate-copy { position: relative; z-index: 2; display: grid; justify-items: start; gap: 16px; transition: opacity .45s var(--ease), translate .7s var(--seam); }
+.gate-name { display: block; }
+.gate-cta { display: inline-flex; gap: 12px; align-items: center; }
+.gate-cta span { display: inline-block; transition: translate .4s var(--ease); }
+
+/* left: the strip */
+.gate-piste {
+  padding: 0 0 0 clamp(26px, 7vw, 130px);
+  color: var(--steel);
+  background:
+    radial-gradient(circle at 32% 62%, rgba(29, 255, 142, .10), transparent 42%),
+    radial-gradient(circle at 10% 10%, rgba(127, 227, 255, .07), transparent 40%),
+    linear-gradient(rgba(127, 227, 255, .045) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, rgba(127, 227, 255, .045) 1px, transparent 1px) 0 0 / 56px 56px,
+    var(--bg);
+}
+.gate-piste .gate-copy { max-width: min(36vw, 440px); }
+.gate-piste .gate-kicker { display: inline-flex; align-items: center; gap: 10px; font: 500 11px var(--mono); letter-spacing: .32em; text-transform: uppercase; color: var(--muted); }
+.gate-piste .gate-kicker .lamp { width: 8px; height: 8px; }
+.gate-piste .gate-name { font: 700 clamp(40px, 5.6vw, 88px)/.95 var(--display); letter-spacing: .02em; text-transform: uppercase; text-shadow: 0 0 40px rgba(127, 227, 255, .25); }
+.gate-piste .gate-desc { font: 400 16px/1.6 var(--body); color: var(--text); max-width: 32ch; }
+.gate-piste .gate-cta { margin-top: 10px; font: 500 12px var(--mono); letter-spacing: .26em; text-transform: uppercase; color: var(--blade); }
+.gate-fencer {
+  position: absolute; z-index: 1; left: clamp(26px, 7vw, 130px); bottom: 9vh;
+  width: min(30vw, 380px); aspect-ratio: 2 / 1;
+  background: linear-gradient(180deg, #ffffff, #b7dcf5 60%, #7fe3ff);
+  -webkit-mask: url(../assets/art/fencer-guard.svg) left bottom / contain no-repeat;
+  mask: url(../assets/art/fencer-guard.svg) left bottom / contain no-repeat;
+  filter: drop-shadow(0 0 18px rgba(127, 227, 255, .4));
+  opacity: .22; transition: opacity .6s var(--ease), translate .8s var(--seam);
+}
+#gate[data-lean="piste"] .gate-fencer { opacity: .9; -webkit-mask-image: url(../assets/art/fencer-lunge.svg); mask-image: url(../assets/art/fencer-lunge.svg); }
+
+/* right: the page */
+.gate-off {
+  z-index: 1;
+  justify-content: flex-end; text-align: right;
+  padding: 0 clamp(26px, 7vw, 130px) 0 0;
+  color: var(--ink);
+  background: radial-gradient(ellipse at 70% 40%, transparent 40%, rgba(120, 92, 52, .10)), var(--grain), var(--paper);
+  clip-path: polygon(60% 0, 100% 0, 100% 100%, 44% 100%);
+  transition: clip-path .95s var(--seam);
+}
+.gate-off .gate-copy { justify-items: end; max-width: min(34vw, 440px); }
+.gate-off .gate-kicker { font: italic 400 19px var(--serif); color: #7a7064; }
+.gate-off .gate-name { font: 400 clamp(48px, 6.6vw, 108px)/.92 var(--serif); letter-spacing: -.01em; }
+.gate-off .gate-desc { font: 400 21px/1.4 var(--serif); color: #4a443c; max-width: 26ch; }
+.gate-off .gate-cta { margin-top: 8px; font: italic 400 22px var(--serif); color: var(--vermillion); background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .5s var(--ease); padding-bottom: 2px; }
+.gate-ink { position: absolute; z-index: 1; right: clamp(26px, 7vw, 130px); bottom: 7vh; width: min(24vw, 300px); aspect-ratio: 4 / 3; color: var(--ink); opacity: .85; }
+.gate-ink svg { width: 100%; height: 100%; overflow: visible; }
+.gate-ink path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: inkDraw 2.4s var(--seam) .5s forwards; }
+.gate-ink path:nth-child(2) { animation-delay: 1.1s; } .gate-ink path:nth-child(3) { animation-delay: 1.5s; } .gate-ink path:nth-child(n+4) { animation-delay: 1.8s; }
+.gate-ink .accent { color: var(--vermillion); stroke: var(--vermillion); }
+@keyframes inkDraw { to { stroke-dashoffset: 0; } }
+
+/* the seam: a thin blade edge in scoring-lamp colours */
+#gate::after {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(180deg, var(--green), var(--blade) 50%, var(--red));
+  clip-path: polygon(60% 0, calc(60% + 2px) 0, calc(44% + 2px) 100%, 44% 100%);
+  transition: clip-path .95s var(--seam), opacity .4s;
+  filter: saturate(.9);
+}
+
+/* lean toward the side under the pointer */
+#gate[data-lean="piste"] .gate-off { clip-path: polygon(72% 0, 100% 0, 100% 100%, 56% 100%); }
+#gate[data-lean="piste"]::after { clip-path: polygon(72% 0, calc(72% + 2px) 0, calc(56% + 2px) 100%, 56% 100%); }
+#gate[data-lean="off"] .gate-off { clip-path: polygon(46% 0, 100% 0, 100% 100%, 30% 100%); }
+#gate[data-lean="off"]::after { clip-path: polygon(46% 0, calc(46% + 2px) 0, calc(30% + 2px) 100%, 30% 100%); }
+#gate[data-lean="piste"] .gate-piste .gate-cta span,
+#gate[data-lean="off"] .gate-off .gate-cta span { translate: 6px 0; }
+#gate[data-lean="off"] .gate-off .gate-cta { background-size: 100% 1px; }
+#gate[data-lean="off"] .gate-piste .gate-copy { opacity: .45; }
+#gate[data-lean="piste"] .gate-off .gate-copy { opacity: .55; }
+
+/* a choice sweeps the seam off the screen */
+#gate[data-chosen="off"] .gate-off { clip-path: polygon(-40% 0, 100% 0, 100% 100%, -56% 100%); }
+#gate[data-chosen="off"]::after { clip-path: polygon(-40% 0, calc(-40% + 2px) 0, calc(-56% + 2px) 100%, -56% 100%); }
+#gate[data-chosen="off"] .gate-piste .gate-copy { opacity: 0; translate: -40px 0; }
+#gate[data-chosen="off"] .gate-off .gate-copy { opacity: 0; transition-delay: .35s; }
+#gate[data-chosen="piste"] .gate-off { clip-path: polygon(140% 0, 100% 0, 100% 100%, 124% 100%); }
+#gate[data-chosen="piste"]::after { clip-path: polygon(140% 0, calc(140% + 2px) 0, calc(124% + 2px) 100%, 124% 100%); }
+#gate[data-chosen="piste"] .gate-piste .gate-copy { opacity: 0; translate: 0 -20px; transition-delay: .2s; }
+
+.gate-side:focus-visible .gate-cta { outline: 1px solid currentColor; outline-offset: 6px; }
+
+/* the name and the question sit on the seam, legible on both sides */
+.gate-center, .gate-q {
+  position: absolute; left: 0; right: 0; z-index: 4; margin: 0; text-align: center; pointer-events: none;
+  color: #fff; mix-blend-mode: difference; transition: opacity .4s;
+}
+.gate-center { top: 30px; font: 500 11px var(--mono); letter-spacing: .36em; text-transform: uppercase; }
+.gate-q { bottom: 34px; font: italic 400 clamp(20px, 2vw, 26px) var(--serif); }
+#gate[data-chosen] .gate-center, #gate[data-chosen] .gate-q { opacity: 0; }
+
+/* the switch to the other mode in the HUD */
+.hud-paper { display: inline-block; width: 11px; height: 13px; background: var(--paper); rotate: -8deg; box-shadow: 2px 2px 0 rgba(243, 238, 228, .25); }
+
+/* phones and tall windows: the seam runs across, strip on top, page below */
+@media (max-aspect-ratio: 4 / 5), (max-width: 640px) {
+  .gate-side { align-items: flex-start; }
+  .gate-piste { padding: 18vh 26px 0; }
+  .gate-piste .gate-copy, .gate-off .gate-copy { max-width: none; }
+  .gate-piste .gate-desc { font-size: 15px; }
+  .gate-fencer { left: auto; right: 22px; bottom: auto; top: 30vh; width: 44vw; }
+  .gate-off { align-items: flex-end; padding: 0 26px 15vh; clip-path: polygon(0 58%, 100% 48%, 100% 100%, 0 100%); }
+  .gate-off .gate-desc { font-size: 19px; }
+  .gate-ink { right: auto; left: 22px; top: auto; bottom: 3vh; width: 30vw; }
+  #gate::after { clip-path: polygon(0 58%, 100% 48%, 100% calc(48% + 2px), 0 calc(58% + 2px)); }
+  #gate[data-lean="piste"] .gate-off { clip-path: polygon(0 60%, 100% 52%, 100% 100%, 0 100%); }
+  #gate[data-lean="piste"]::after { clip-path: polygon(0 60%, 100% 52%, 100% calc(52% + 2px), 0 calc(60% + 2px)); }
+  #gate[data-lean="off"] .gate-off { clip-path: polygon(0 54%, 100% 44%, 100% 100%, 0 100%); }
+  #gate[data-lean="off"]::after { clip-path: polygon(0 54%, 100% 44%, 100% calc(44% + 2px), 0 calc(54% + 2px)); }
+  #gate[data-chosen="off"] .gate-off { clip-path: polygon(0 -20%, 100% -30%, 100% 100%, 0 100%); }
+  #gate[data-chosen="off"]::after { clip-path: polygon(0 -20%, 100% -30%, 100% calc(-30% + 2px), 0 calc(-20% + 2px)); }
+  #gate[data-chosen="piste"] .gate-off { clip-path: polygon(0 130%, 100% 120%, 100% 100%, 0 100%); }
+  #gate[data-chosen="piste"]::after { clip-path: polygon(0 130%, 100% 120%, 100% calc(120% + 2px), 0 calc(130% + 2px)); }
+  .gate-center { top: 20px; }
+  .gate-q { bottom: auto; top: 50%; translate: 0 -50%; font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #gate, #gate *, #gate::after { transition: none !important; animation: none !important; }
+  .gate-ink path { stroke-dashoffset: 0; }
 }

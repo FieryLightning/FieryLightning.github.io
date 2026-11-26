@@ -146,6 +146,13 @@ export function createTerminal({ root, profile, projects, loadout, actions }) {
         window.open(profile.githubUrl, '_blank', 'noopener');
       },
     },
+    off: {
+      desc: 'leave the strip: Off the Piste mode',
+      run() {
+        print('→ off the piste. <span class="t-m">ink and paper…</span>');
+        setTimeout(() => { location.href = 'off/'; }, 420);
+      },
+    },
     history: { desc: 'command history', run() { history.forEach((h, i) => print(`  <span class="t-m">${i + 1}</span>  ${esc(h)}`)); } },
     clear: { desc: 'clear the screen', run() { out.innerHTML = ''; } },
     exit: { desc: 'close the terminal', run() { close(); } },

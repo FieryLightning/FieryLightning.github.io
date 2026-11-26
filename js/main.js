@@ -5,6 +5,7 @@ import { sfx } from './audio.js';
 import { renderSeg } from './seg.js';
 import { createTerminal } from './terminal.js';
 import { createDrill } from './reflex.js';
+import { waitForGate } from './gate.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -421,6 +422,9 @@ function afterIntro(quick) {
   typer();
 }
 
-intro();
 updatePiste();
-requestAnimationFrame(() => setTimeout(bootField, 0));
+// the chooser comes first: the intro and the GPU field start only for this mode
+waitForGate({ onChoose: (m) => { if (m === 'piste') sfx.shing(0.8); } }).then(() => {
+  intro();
+  requestAnimationFrame(() => setTimeout(bootField, 0));
+});

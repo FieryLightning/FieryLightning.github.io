@@ -29,6 +29,17 @@ export const profile = {
   ],
 };
 
+// Copy for the calm mode, Off the Piste (off/). Projects, loadout and
+// contact details are shared with the main page.
+export const offPiste = {
+  line: 'I build AI tools that respect the person using them.',
+  note: [
+    'I build software the way I fence sabre: pick the line, commit, cut clean, ship.',
+    'Lately that means study coaches that work offline, video-to-guide pipelines that can run entirely on a Mac, a calendar reader that refuses to guess a date, and FormuAI, a drug-formulation platform I took over and now develop.',
+  ],
+  coda: 'On the piste, I fence sabre. It is the fastest weapon in fencing: the whole target above the waist is open, and a touch is decided in a fraction of a second.',
+};
+
 export const loadout = [
   { slot: 'Languages', icon: 'i-code', items: ['TypeScript', 'JavaScript', 'Python', 'Swift', 'SQL'] },
   { slot: 'Front end', icon: 'i-target', items: ['React 19', 'Next.js', 'Vite', 'PWA / Service Workers', 'IndexedDB (Dexie)'] },
