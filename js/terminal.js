@@ -57,7 +57,7 @@ export function createTerminal({ root, profile, projects, loadout, actions }) {
       run() {
         print(`<span class="t-a">${esc(profile.name)}</span> <span class="t-m">(${esc(profile.handle)} · @${esc(profile.github)})</span>`);
         print(`${esc(profile.role)}. ${esc(profile.education)}.`);
-        print(`weapon: <span class="t-c">${esc(profile.weapon)}</span> — edge and point, everything above the waist, right of way.`);
+        print(`fences <span class="t-c">${esc(profile.weapon.toLowerCase())}</span>.`);
       },
     },
     ls: {

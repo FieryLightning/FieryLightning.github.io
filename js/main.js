@@ -71,7 +71,7 @@ addEventListener('pointerup', () => sfx.unlock(), { passive: true });
 // ── hero ─────────────────────────────────────────────────────
 $('#hero-name-sr').textContent = profile.handle;
 $$('.sn-a, .sn-b').forEach((el) => { el.textContent = profile.handle; });
-$('#hero-role').innerHTML = `${esc(profile.name)} — ${esc(profile.role)}.<br>${esc(profile.educationShort)} · ${esc(profile.weapon)} fencer.`;
+$('#hero-role').innerHTML = `${esc(profile.role)}.<br>${esc(profile.educationShort)}. ${esc(profile.weapon)} fencer.`;
 
 function slashName() {
   const n = $('#name');
@@ -122,7 +122,7 @@ async function typer() {
 
 // ── arsenal ──────────────────────────────────────────────────
 const WORDS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
-$('#arsenal-title').textContent = `${WORDS[projects.length] ?? projects.length} touches landed.`;
+$('#arsenal-title').textContent = `${WORDS[projects.length] ?? projects.length} projects.`;
 $('[data-filter="all"] .n').textContent = pad2(projects.length);
 $('[data-filter="live"] .n').textContent = pad2(live.length);
 $('[data-filter="private"] .n').textContent = pad2(priv.length);
@@ -213,7 +213,7 @@ $('#pc-handle').textContent = '@' + profile.github;
 $('#pc-handle').href = profile.githubUrl;
 $('#pc-edu').textContent = profile.education;
 $('#pc-weapon').textContent = profile.weapon;
-$('#pc-builds').textContent = `${projects.length} shipped · ${live.length} live`;
+$('#pc-builds').textContent = `${projects.length} built · ${live.length} live`;
 $('#bio').innerHTML = profile.bio.map((p) => `<p>${esc(p)}</p>`).join('');
 $('#loadout').innerHTML = loadout.map((s) => `
   <div class="slot" data-reveal>
@@ -366,15 +366,6 @@ function loop(now) {
 }
 requestAnimationFrame(loop);
 
-// GPU readout
-const readout = $('#gpu');
-setInterval(() => {
-  if (!field) { readout.textContent = 'STATIC FIELD · WEBGL2 UNAVAILABLE'; return; }
-  const s = field.stats();
-  readout.textContent = s.ready
-    ? `WEBGL2 · TRANSFORM FEEDBACK · ${s.count.toLocaleString('en-US')} PARTICLES · ${s.fps} FPS`
-    : `COMPILING SHADERS${s.parallel ? ' · PARALLEL' : ''}…`;
-}, 500);
 
 // ── intro: "En garde. Prêts ? Allez !" ───────────────────────
 async function intro() {

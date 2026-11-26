@@ -347,29 +347,6 @@ main { position: relative; z-index: 2; overflow-x: clip; }
 .sb-label { font: 600 10px var(--mono); letter-spacing: .22em; color: var(--muted); }
 .sb-foot { border-top: 1px dashed var(--line-2); padding-top: 10px; font: 500 10px var(--mono); letter-spacing: .22em; color: var(--muted); text-align: center; }
 
-/* ── ticker ─────────────────────────────────────────────────── */
-.ticker {
-  position: relative; z-index: 3;
-  margin: 0 -3vw; padding: 13px 0;
-  transform: rotate(-1.6deg);
-  background: #070b12;
-  border-block: 1px solid rgba(127, 227, 255, .18);
-  overflow: hidden;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, .55);
-}
-.ticker::before, .ticker::after { content: ''; position: absolute; left: 0; right: 0; height: 2px; }
-.ticker::before { top: 0; background: linear-gradient(90deg, var(--red), transparent 40%, transparent 60%, var(--green)); opacity: .6; }
-.ticker::after { bottom: 0; background: linear-gradient(90deg, var(--green), transparent 40%, transparent 60%, var(--red)); opacity: .35; }
-.ticker-track {
-  display: flex; gap: 26px; width: max-content;
-  font: 600 14px/1 var(--display); letter-spacing: .26em; color: var(--steel-2);
-  animation: tick 52s linear infinite;
-}
-.ticker-track b { color: var(--red); font-weight: 400; }
-.ticker-track b:nth-of-type(even) { color: var(--green); }
-@keyframes tick { to { transform: translateX(calc(-50% - 13px)); } }
-.frenzy .ticker-track { animation-duration: 8s; }
-
 /* ── sections ───────────────────────────────────────────────── */
 .sec {
   position: relative;
@@ -692,14 +669,9 @@ b.r { color: var(--red); font-weight: 600; }
   border-top: 1px solid var(--line);
   font: 500 11px/1.6 var(--mono); color: var(--muted); letter-spacing: .04em;
 }
-.foot-tech { max-width: 76ch; }
 
 /* ── HUD bits ───────────────────────────────────────────────── */
-.gpu {
-  position: fixed; left: 14px; bottom: 12px; z-index: 40; pointer-events: none;
-  font: 500 9.5px var(--mono); letter-spacing: .14em; color: rgba(127, 227, 255, .45);
-}
-.gpu::before { content: '◢ '; color: var(--green); }
+
 .toast {
   position: fixed; left: 50%; bottom: 26px; z-index: 65;
   transform: translate(-50%, calc(100% + 40px));
@@ -771,7 +743,6 @@ b.r { color: var(--red); font-weight: 600; }
   .hero { padding-top: 96px; padding-bottom: 90px; }
   .slashname { font-size: 23vw; }
   .loadout { grid-template-columns: minmax(0, 1fr); }
-  .gpu { display: none; }
   .hint { display: none; }
   .sec h2 { font-size: clamp(34px, 10vw, 48px); }
   .card-host { display: none; }
@@ -788,7 +759,6 @@ b.r { color: var(--red); font-weight: 600; }
     animation-iteration-count: 1 !important;
     transition-duration: .001ms !important;
   }
-  .ticker-track { animation: none; }
 }
 
 /* ── mode chooser ───────────────────────────────────────────────
@@ -813,8 +783,6 @@ b.r { color: var(--red); font-weight: 600; }
 .gate-side { position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; text-decoration: none; outline: none; -webkit-tap-highlight-color: transparent; }
 .gate-copy { position: relative; z-index: 2; display: grid; justify-items: start; gap: 16px; transition: opacity .45s var(--ease), translate .7s var(--seam); }
 .gate-name { display: block; }
-.gate-cta { display: inline-flex; gap: 12px; align-items: center; }
-.gate-cta span { display: inline-block; transition: translate .4s var(--ease); }
 
 /* left: the strip */
 .gate-piste {
@@ -828,11 +796,8 @@ b.r { color: var(--red); font-weight: 600; }
     var(--bg);
 }
 .gate-piste .gate-copy { max-width: min(36vw, 440px); }
-.gate-piste .gate-kicker { display: inline-flex; align-items: center; gap: 10px; font: 500 11px var(--mono); letter-spacing: .32em; text-transform: uppercase; color: var(--muted); }
-.gate-piste .gate-kicker .lamp { width: 8px; height: 8px; }
 .gate-piste .gate-name { font: 700 clamp(40px, 5.6vw, 88px)/.95 var(--display); letter-spacing: .02em; text-transform: uppercase; text-shadow: 0 0 40px rgba(127, 227, 255, .25); }
 .gate-piste .gate-desc { font: 400 16px/1.6 var(--body); color: var(--text); max-width: 32ch; }
-.gate-piste .gate-cta { margin-top: 10px; font: 500 12px var(--mono); letter-spacing: .26em; text-transform: uppercase; color: var(--blade); }
 .gate-fencer {
   position: absolute; z-index: 1; left: clamp(26px, 7vw, 130px); bottom: 9vh;
   width: min(30vw, 380px); aspect-ratio: 2 / 1;
@@ -855,10 +820,8 @@ b.r { color: var(--red); font-weight: 600; }
   transition: clip-path .95s var(--seam);
 }
 .gate-off .gate-copy { justify-items: end; max-width: min(34vw, 440px); }
-.gate-off .gate-kicker { font: italic 400 19px var(--serif); color: #7a7064; }
 .gate-off .gate-name { font: 400 clamp(48px, 6.6vw, 108px)/.92 var(--serif); letter-spacing: -.01em; }
 .gate-off .gate-desc { font: 400 21px/1.4 var(--serif); color: #4a443c; max-width: 26ch; }
-.gate-off .gate-cta { margin-top: 8px; font: italic 400 22px var(--serif); color: var(--vermillion); background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .5s var(--ease); padding-bottom: 2px; }
 .gate-ink { position: absolute; z-index: 1; right: clamp(26px, 7vw, 130px); bottom: 7vh; width: min(24vw, 300px); aspect-ratio: 4 / 3; color: var(--ink); opacity: .85; }
 .gate-ink svg { width: 100%; height: 100%; overflow: visible; }
 .gate-ink path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: inkDraw 2.4s var(--seam) .5s forwards; }
@@ -880,9 +843,6 @@ b.r { color: var(--red); font-weight: 600; }
 #gate[data-lean="piste"]::after { clip-path: polygon(72% 0, calc(72% + 2px) 0, calc(56% + 2px) 100%, 56% 100%); }
 #gate[data-lean="off"] .gate-off { clip-path: polygon(46% 0, 100% 0, 100% 100%, 30% 100%); }
 #gate[data-lean="off"]::after { clip-path: polygon(46% 0, calc(46% + 2px) 0, calc(30% + 2px) 100%, 30% 100%); }
-#gate[data-lean="piste"] .gate-piste .gate-cta span,
-#gate[data-lean="off"] .gate-off .gate-cta span { translate: 6px 0; }
-#gate[data-lean="off"] .gate-off .gate-cta { background-size: 100% 1px; }
 #gate[data-lean="off"] .gate-piste .gate-copy { opacity: .45; }
 #gate[data-lean="piste"] .gate-off .gate-copy { opacity: .55; }
 
@@ -895,15 +855,15 @@ b.r { color: var(--red); font-weight: 600; }
 #gate[data-chosen="piste"]::after { clip-path: polygon(140% 0, calc(140% + 2px) 0, calc(124% + 2px) 100%, 124% 100%); }
 #gate[data-chosen="piste"] .gate-piste .gate-copy { opacity: 0; translate: 0 -20px; transition-delay: .2s; }
 
-.gate-side:focus-visible .gate-cta { outline: 1px solid currentColor; outline-offset: 6px; }
+.gate-side:focus-visible .gate-name { outline: 1px solid currentColor; outline-offset: 8px; }
 
 /* the name and the question sit on the seam, legible on both sides */
 .gate-center, .gate-q {
   position: absolute; left: 0; right: 0; z-index: 4; margin: 0; text-align: center; pointer-events: none;
   color: #fff; mix-blend-mode: difference; transition: opacity .4s;
 }
-.gate-center { top: 30px; font: 500 11px var(--mono); letter-spacing: .36em; text-transform: uppercase; }
-.gate-q { bottom: 34px; font: italic 400 clamp(20px, 2vw, 26px) var(--serif); }
+.gate-center { top: 28px; font: 500 14px var(--body); letter-spacing: .01em; }
+.gate-q { bottom: 34px; font: 400 clamp(19px, 1.8vw, 24px) var(--serif); }
 #gate[data-chosen] .gate-center, #gate[data-chosen] .gate-q { opacity: 0; }
 
 /* the switch to the other mode in the HUD */

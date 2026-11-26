@@ -15,29 +15,28 @@ export const profile = {
   email: '', // optional: add an address to show a "mail" button in the Salute section
   education: 'CS graduate, University of Wisconsin–Madison',
   educationShort: 'CS graduate, UW–Madison',
-  role: 'Builder of AI tools, apps & platforms',
+  role: 'I build AI tools, apps & platforms',
   weapon: 'Sabre',
   taglines: [
-    'fast hands. clean cuts. shipped code.',
-    'the attacker has right of way.',
-    'commit to the attack. then ship it.',
-    'decided in milliseconds. built to last.',
+    'currently developing FormuAI',
+    'green lamp = live, red lamp = private',
+    'swipe fast to cut the field',
+    'press ` for a terminal',
   ],
   bio: [
-    'I fence sabre. It is the fastest weapon in fencing: the whole target above the waist is open, the edge counts as much as the point, and the fencer who commits first holds right of way. A touch is decided in a fraction of a second.',
-    'I build software the same way. Pick the line, commit, cut clean, ship. Lately that means AI tools that respect the person using them: study coaches that work offline, video-to-guide pipelines that can run entirely on a Mac, a calendar reader that refuses to guess a date, and FormuAI, a drug-formulation platform I took over and now develop.',
+    "I'm currently developing FormuAI, a drug-formulation platform I took over. I've also built a study coach that works offline, a tool that turns how-to videos into written guides and can run entirely on a Mac, and a calendar reader that won't guess a date.",
+    'I fence sabre. It is the fastest weapon in fencing: the whole target above the waist is open, the edge counts as much as the point, and the fencer who commits first holds right of way.',
   ],
 };
 
 // Copy for the calm mode, Off the Piste (off/). Projects, loadout and
 // contact details are shared with the main page.
 export const offPiste = {
-  line: 'I build AI tools that respect the person using them.',
+  line: 'I studied computer science at UW–Madison. I build AI tools, apps and platforms.',
   note: [
-    'I build software the way I fence sabre: pick the line, commit, cut clean, ship.',
-    'Lately that means study coaches that work offline, video-to-guide pipelines that can run entirely on a Mac, a calendar reader that refuses to guess a date, and FormuAI, a drug-formulation platform I took over and now develop.',
+    "I'm currently developing FormuAI, a drug-formulation platform I took over. The rest of what I've built is below.",
   ],
-  coda: 'On the piste, I fence sabre. It is the fastest weapon in fencing: the whole target above the waist is open, and a touch is decided in a fraction of a second.',
+  coda: 'I also fence sabre.',
 };
 
 export const loadout = [

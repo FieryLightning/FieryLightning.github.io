@@ -1,10 +1,9 @@
 // ─────────────────────────────────────────────────────────────
 //  Off the Piste. Content comes from ../js/data.js, shared with
-//  the main page. Three kinds of motion, all ink:
+//  the main page. The only motion is ink:
 //   · each drawing sketches itself, path by path, in pen order
 //   · one thread runs the page; its tip follows your reading
 //     position, threading through the margins and the drawings
-//   · text settles onto the page as it comes into view
 // ─────────────────────────────────────────────────────────────
 
 import { profile, projects, loadout, offPiste } from '../js/data.js';
@@ -13,78 +12,51 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-const pad2 = (n) => String(n).padStart(2, '0');
 const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
 const say = (n) => WORDS[n] ?? String(n);
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
-const host = (u) => { try { return new URL(u).host.replace(/^www\./, ''); } catch { return u; } };
+const host = (u) => { try { const x = new URL(u); return (x.host + x.pathname).replace(/^www\./, '').replace(/\/$/, ''); } catch { return u; } };
 
 const live = projects.filter((p) => p.url);
 const priv = projects.filter((p) => !p.url);
 
 // ── content ──────────────────────────────────────────────────
 function fill() {
-  const name = $('#hero-name');
-  let i = 0;
-  const split = (node) => {
-    for (const n of [...node.childNodes]) {
-      if (n.nodeType === 3) {
-        const frag = document.createDocumentFragment();
-        for (const ch of n.textContent) {
-          const s = document.createElement('span');
-          s.className = 'ch';
-          s.style.setProperty('--i', i++);
-          s.textContent = ch === ' ' ? ' ' : ch;
-          frag.append(s);
-        }
-        n.replaceWith(frag);
-      } else split(n);
-    }
-  };
-  name.setAttribute('aria-label', name.textContent);
-  split(name);
-
   $('#hero-line').textContent = offPiste.line;
-  $('#hero-meta').textContent = `${profile.education} · ${profile.role}`;
-
-  const [lede, ...rest] = offPiste.note;
-  $('#note').innerHTML =
-    `<p class="lede" data-rise>${esc(lede).replace('cut clean', '<em>cut clean</em>')}</p>` +
-    rest.map((p) => `<p data-rise>${esc(p)}</p>`).join('');
+  $('#note').innerHTML = offPiste.note.map((p) => `<p>${esc(p)}</p>`).join('');
 
   $('#works-sub').textContent =
-    `${cap(say(projects.length))} builds. ${cap(say(live.length))} you can open today` +
-    (priv.length ? `; ${say(priv.length)} ${priv.length === 1 ? 'is' : 'are'} kept private.` : '.');
+    `${cap(say(projects.length))} projects. ${cap(say(live.length))} ${live.length === 1 ? 'is' : 'are'} live` +
+    (priv.length ? `; ${say(priv.length)} ${priv.length === 1 ? 'is' : 'are'} private.` : '.');
 
   $('#plates').innerHTML = projects.map((p, i) => {
     const links = [];
-    if (p.url) links.push(`<a class="u" href="${esc(p.url)}" target="_blank" rel="noopener">Open ${esc(host(p.url))} ↗</a>`);
-    if (p.source) links.push(`<a class="u" href="${esc(p.source)}" target="_blank" rel="noopener">Source</a>`);
-    if (!p.url) links.push(`<span class="private">${esc(p.privateNote || 'Private build')}${p.source ? '' : ' · no public link'}</span>`);
+    if (p.url) links.push(`<a class="u" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(host(p.url))} ↗</a>`);
+    if (p.source) links.push(`<a class="u" href="${esc(p.source)}" target="_blank" rel="noopener">Source code</a>`);
+    if (!p.url) links.push(`<span class="private">${esc(p.privateNote || 'Private build')}${p.source ? '' : ', no public link'}.</span>`);
     return `
       <article class="plate${i % 2 ? ' flip' : ''}" data-thread="ink">
         <figure class="ink" data-ink="${esc(p.id)}" aria-hidden="true"></figure>
         <div class="plate-text">
-          <p class="plate-no" data-rise>No. ${pad2(i + 1)} <span class="${p.url ? 'live' : ''}">${p.url ? 'Live' : 'Private'}</span></p>
-          <h3 data-rise>${esc(p.name)}</h3>
-          <p class="plate-tag" data-rise>${esc(p.tagline)}</p>
-          <p class="plate-desc" data-rise>${esc(p.description)}</p>
-          <p class="plate-stack" data-rise>${p.stack.map(esc).join(' <i>·</i> ')}</p>
-          <p class="plate-links" data-rise>${links.join('')}</p>
+          <h3>${esc(p.name)}</h3>
+          <p class="plate-tag">${esc(p.tagline)}</p>
+          <p class="plate-desc">${esc(p.description)}</p>
+          <p class="plate-stack">${p.stack.map(esc).join(' <i>·</i> ')}</p>
+          <p class="plate-links">${links.join('')}</p>
         </div>
       </article>`;
   }).join('');
 
-  $('#tools').innerHTML = loadout.map((s, i) => `
-    <div class="tool" data-rise style="--d:${i * 120}ms">
-      <h3>${esc(s.slot)}<svg viewBox="0 0 100 9" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 6 C 22 3, 48 8, 70 4.5 S 92 3, 99 5"/></svg></h3>
+  $('#tools').innerHTML = loadout.map((s) => `
+    <div class="tool">
+      <h3>${esc(s.slot)}</h3>
       <ul>${s.items.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
     </div>`).join('');
 
   $('#coda').textContent = offPiste.coda;
   const sign = [`<a class="u" href="${esc(profile.githubUrl)}" target="_blank" rel="noopener">github.com/${esc(profile.github)}</a>`];
   if (profile.email) sign.push(`<a class="u" href="mailto:${esc(profile.email)}">${esc(profile.email)}</a>`);
-  $('#sign-links').innerHTML = sign.join('');
+  $('#sign-links').innerHTML = `Contact: ${sign.join(' or ')}`;
   $('#seal').innerHTML = SEAL;
   $('#year').textContent = new Date().getFullYear();
 }
@@ -289,21 +261,8 @@ function tick() {
 }
 const kick = () => { if (!raf && !reduced) raf = requestAnimationFrame(tick); };
 
-// ── reveal ───────────────────────────────────────────────────
+// ── drawings start when they come into view ──────────────────
 function observe() {
-  const rise = new IntersectionObserver((entries) => {
-    for (const e of entries) {
-      if (!e.isIntersecting) continue;
-      e.target.classList.add('in');
-      rise.unobserve(e.target);
-    }
-  }, { rootMargin: '0px 0px -9% 0px' });
-  // stagger siblings that arrive together
-  for (const group of $$('.hero-text, .hero, .note, .works-head, .plate-text, .toolbox, .coda')) {
-    $$(':scope > [data-rise]', group).forEach((el, i) => { if (!el.style.getPropertyValue('--d')) el.style.setProperty('--d', `${i * 90}ms`); });
-  }
-  $$('[data-rise], .tool, .seal').forEach((el) => rise.observe(el));
-
   const pen = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (!e.isIntersecting) continue;
@@ -321,15 +280,15 @@ const inks = $$('.ink');
 Promise.all(inks.map(loadInk)).then(async () => {
   await document.fonts?.ready;
   buildThread();
-  // the nib draws first; the thread leaves its tip when it is done
-  const nib = $('.ink-nib');
+  // the pen draws first; the thread leaves its tip when it is done
+  const pen = $('.ink-nib');
   setTimeout(() => {
-    const t = draw(nib) || 0;
+    const t = draw(pen) || 0;
     setTimeout(() => { armed = true; kick(); }, reduced ? 0 : t + 200);
-  }, reduced ? 0 : 650);
+  }, reduced ? 0 : 400);
 });
 
-addEventListener('scroll', () => { kick(); document.documentElement.classList.toggle('reading', scrollY > 40); }, { passive: true });
+addEventListener('scroll', kick, { passive: true });
 let rt = 0;
 const rebuild = () => { clearTimeout(rt); rt = setTimeout(() => { buildThread(); kick(); }, 120); };
 addEventListener('resize', rebuild);
