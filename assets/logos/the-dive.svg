@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 512" role="img" aria-labelledby="dive-title dive-desc">
+  <title id="dive-title">The Dive</title>
+  <desc id="dive-desc">A white surface wave above a descent line, depth marks, bubbles and a downward arrow in a teal-to-navy ocean.</desc>
+  <defs>
+    <linearGradient id="dive-depth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2fd4ff"/>
+      <stop offset="0.4" stop-color="#087eaa"/>
+      <stop offset="1" stop-color="#021a3a"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#dive-depth)"/>
+  <path d="M88 149 C120 149 120 127 152 127 S184 149 216 149 S248 127 280 127 S312 149 344 149 S376 127 408 127"
+    fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round">
+    <path d="M256 211 V347" stroke-width="20" stroke-dasharray="18 27"/>
+    <path d="M211 235 H225 M287 280 H301 M211 325 H225" stroke-width="12" opacity="0.65"/>
+    <path d="M215 374 L256 415 L297 374" stroke-width="24" stroke-linejoin="round"/>
+    <circle cx="140" cy="254" r="14" stroke-width="10" opacity="0.8"/>
+    <circle cx="369" cy="217" r="9" stroke-width="8" opacity="0.65"/>
+  </g>
+  <circle cx="166" cy="345" r="7" fill="#fff" opacity="0.6"/>
+</svg>

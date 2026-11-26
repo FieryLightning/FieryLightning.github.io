@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="eyes">
+      <ellipse cx="26" cy="45" rx="10.5" ry="13.5" transform="rotate(-18 26 45)"/>
+      <ellipse cx="102" cy="45" rx="10.5" ry="13.5" transform="rotate(18 102 45)"/>
+    </clipPath>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#dfeccd"/>
+  <g transform="translate(256 262) scale(3.3) translate(-64 -48)" fill="none" stroke="#2e4b3a" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M54 35C49 18 36 9 24 13M74 35C79 17 94 7 105 11" stroke-width="4"/>
+    <path d="M24 39C43 31 85 31 104 39l1 12c-13 16-26 27-38 33-2 1-4 1-6 0-13-7-26-18-38-33l1-12Z" fill="#91b56e" stroke-width="4.5"/>
+    <path d="M43 38c9-3 20-3 28-2" stroke="#d9e4b4" stroke-width="3.5"/>
+    <g fill="#bfd18f" stroke-width="4.5">
+      <ellipse cx="26" cy="45" rx="10.5" ry="13.5" transform="rotate(-18 26 45)"/>
+      <ellipse cx="102" cy="45" rx="10.5" ry="13.5" transform="rotate(18 102 45)"/>
+    </g>
+    <g clip-path="url(#eyes)" fill="#263f31" stroke="none">
+      <ellipse cx="28" cy="44" rx="3.8" ry="5.1"/>
+      <ellipse cx="100" cy="44" rx="3.8" ry="5.1"/>
+    </g>
+    <path d="M53 72q11 9 22 0" stroke="#263f31" stroke-width="4.5"/>
+  </g>
+</svg>

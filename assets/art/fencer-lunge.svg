@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 240 100" fill="currentColor">
+  <title>Sabre fencer in a full lunge, facing right</title>
+  <desc>A masked fencer extends the sword arm, bends the front knee over the ankle and drives the rear leg straight behind.</desc>
+  <g id="fencer-lunge-figure" fill="currentColor">
+    <path fill-rule="evenodd" d="M117 5C124 2 132 6 134 13L135 21 131 28 121 30 114 25 111 17 113 9ZM128 11l2 1-1 2-2-1Zm2 6 2 1-1 2-2-1Zm-1 6 2 1-1 2-2-1Z"/>
+    <path d="M117 27 127 28 128 32 149 30 170 27 172 32 149 36 126 40 120 59 107 64 96 59 103 42 98 41 71 32 65 32 63 28 66 24 72 25 102 32 115 31Z"/>
+    <path d="M102 55 112 62 74 81 37 92 40 95 37 98 6 98 5 94 25 89 67 73Z"/>
+    <path d="M108 55 119 56 151 60 156 65 157 90 170 93 174 98 149 98 146 93 145 70 106 66Z"/>
+    <path fill-rule="evenodd" d="m169 23 6-2c5 2 8 7 7 12l-4 5c-6 2-11 0-14-4l1-5 3 1-1 3c3 3 6 4 10 2l2-3c0-4-2-7-5-8l-4 2Z"/>
+    <path d="m171 28 2 5-11 3-1-4Zm8-3 59-6-2 3-56 6Z"/>
+  </g>
+</svg>

@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>KYUAN — AI tools &amp; apps · Sabre</title>
+  <meta name="description" content="KYUAN: builder of AI tools and apps, sabre fencer. StudyArea, ClearSteps, Draftwise, KevCal, AI Coding Field Guide and The Dive.">
+  <meta name="theme-color" content="#04060a">
+  <link rel="canonical" href="https://fierylightning.github.io/">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KYUAN — AI tools & apps · Sabre">
+  <meta property="og:description" content="Builder of AI tools and apps. Sabre fencer. Six builds, four live.">
+  <meta property="og:url" content="https://fierylightning.github.io/">
+  <meta property="og:image" content="https://fierylightning.github.io/assets/og/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      if (sessionStorage.getItem('ky-intro') || matchMedia('(prefers-reduced-motion: reduce)').matches)
+        document.documentElement.classList.add('intro-seen');
+    } catch (e) {}
+  </script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#arsenal">Skip to projects</a>
+
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="atmos" aria-hidden="true"></div>
+  <canvas id="blade" aria-hidden="true"></canvas>
+
+  <!-- Referee's call: En garde. Prêts ? Allez ! -->
+  <div id="intro" aria-hidden="true">
+    <div class="intro-half intro-a"></div>
+    <div class="intro-half intro-b"></div>
+    <div class="intro-stage">
+      <div class="intro-sys"><span class="blink">▮</span> PISTE//OS 6.0 · ARMING FIELD</div>
+      <div class="intro-call" id="intro-call">&nbsp;</div>
+      <div class="intro-lamps"><i class="lamp lamp-red"></i><i class="lamp lamp-green"></i></div>
+      <div class="intro-skip">press any key to skip</div>
+    </div>
+  </div>
+
+  <header class="hud">
+    <a class="hud-brand" href="#en-garde" aria-label="KYUAN, back to top">
+      <img src="assets/brand/mark.svg" alt="" width="30" height="30">
+      <span>KYUAN</span>
+    </a>
+
+    <nav class="piste-nav" aria-label="Sections" data-moving="false">
+      <div class="piste-strip" aria-hidden="true">
+        <i class="pz pz-l"></i><i class="pz pz-r"></i>
+        <i class="pl" style="--m:0"></i><i class="pl pl-g" style="--m:5"></i><i class="pl pl-c" style="--m:7"></i><i class="pl pl-g" style="--m:9"></i><i class="pl" style="--m:14"></i>
+      </div>
+      <span class="piste-marker" aria-hidden="true"><i></i></span>
+      <a href="#en-garde">En garde</a>
+      <a href="#arsenal">Arsenal</a>
+      <a href="#salle">Salle</a>
+      <a href="#drill">Drill</a>
+      <a href="#salute">Salute</a>
+    </nav>
+
+    <div class="hud-actions">
+      <button class="hud-btn" id="snd" type="button" aria-pressed="false" aria-label="Toggle sound">
+        <svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-sound-off"></use></svg><span class="lbl">SND OFF</span>
+      </button>
+      <button class="hud-btn" type="button" data-open-term aria-label="Open terminal">
+        <svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-terminal"></use></svg><span class="lbl">TERM</span><kbd>`</kbd>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 01 · EN GARDE -->
+    <section id="en-garde" class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><i class="lamp lamp-green"></i> PLAYER 01 · SABREUR · ONLINE</p>
+          <h1 class="slashname" id="name" title="click to cut">
+            <span class="sr" id="hero-name-sr">KYUAN</span>
+            <span class="sn-a" aria-hidden="true">KYUAN</span>
+            <span class="sn-b" aria-hidden="true">KYUAN</span>
+            <svg class="sn-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="-6" y1="65.3" x2="106" y2="40.7" vector-effect="non-scaling-stroke"/></svg>
+          </h1>
+          <p class="hero-role" id="hero-role">Builder of AI tools &amp; apps. Sabre fencer.</p>
+          <p class="typer" aria-live="off"><span class="prompt">&gt;</span> <span id="typer"></span><span class="caret" aria-hidden="true"></span></p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#arsenal"><span>Enter the piste</span><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-arrow-down"></use></svg></a>
+            <button class="btn btn-ghost" type="button" data-open-term><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-terminal"></use></svg><span>Open terminal</span><kbd>`</kbd></button>
+          </div>
+        </div>
+
+        <aside class="scorebox" aria-label="Scoreboard">
+          <div class="sb-head"><span>SCORING APPARATUS</span><span class="sb-dots"><i></i><i></i><i></i></span></div>
+          <div class="sb-body">
+            <div class="sb-side sb-red">
+              <i class="dome"></i>
+              <div class="seg" id="sb-red"></div>
+              <span class="sb-label">PRIVATE</span>
+            </div>
+            <div class="sb-center">
+              <div class="seg seg-clock" id="clock"></div>
+              <span class="sb-label">BOUT TIME</span>
+            </div>
+            <div class="sb-side sb-green">
+              <i class="dome"></i>
+              <div class="seg" id="sb-green"></div>
+              <span class="sb-label">LIVE</span>
+            </div>
+          </div>
+          <div class="sb-foot" id="sb-foot">06 BUILDS · P1 · SABRE</div>
+        </aside>
+      </div>
+
+      <img class="hero-sabre" src="assets/art/sabre.svg" alt="" aria-hidden="true" width="1200" height="160">
+      <p class="hint"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-sabre"></use></svg> swipe fast to cut the field · click to parry · <kbd>`</kbd> for terminal</p>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>EN GARDE</span><b>✦</b><span>PRÊTS ?</span><b>✦</b><span>ALLEZ !</span><b>✦</b><span>ATTAQUE</span><b>✦</b><span>PARADE</span><b>✦</b><span>RIPOSTE</span><b>✦</b><span>CONTRE-ATTAQUE</span><b>✦</b><span>RIGHT OF WAY</span><b>✦</b><span>HALTE</span><b>✦</b><span>TOUCHÉ</span><b>✦</b>
+        <span>EN GARDE</span><b>✦</b><span>PRÊTS ?</span><b>✦</b><span>ALLEZ !</span><b>✦</b><span>ATTAQUE</span><b>✦</b><span>PARADE</span><b>✦</b><span>RIPOSTE</span><b>✦</b><span>CONTRE-ATTAQUE</span><b>✦</b><span>RIGHT OF WAY</span><b>✦</b><span>HALTE</span><b>✦</b><span>TOUCHÉ</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- 02 · ARSENAL -->
+    <section id="arsenal" class="sec">
+      <header class="sec-head" data-reveal>
+        <span class="sec-idx">02 <i></i> ARSENAL</span>
+        <h2 id="arsenal-title">Six touches landed.</h2>
+        <p>Tools and apps I've built. <b class="g">Green lamp</b>: live, touch to open. <b class="r">Red lamp</b>: private or local build, described here but not publicly hosted.</p>
+      </header>
+
+      <div class="filters" role="group" aria-label="Filter builds">
+        <button type="button" data-filter="all" aria-pressed="true">ALL <span class="n">06</span></button>
+        <button type="button" data-filter="live" aria-pressed="false"><i class="lamp lamp-green"></i>LIVE <span class="n">04</span></button>
+        <button type="button" data-filter="private" aria-pressed="false"><i class="lamp lamp-red"></i>PRIVATE <span class="n">02</span></button>
+      </div>
+
+      <div class="grid" id="grid"></div>
+
+      <noscript>
+        <ul class="noscript-list">
+          <li><a href="https://studyarea.vercel.app">StudyArea</a> — offline-first AI study coach</li>
+          <li>ClearSteps — video to step-by-step guide (private build)</li>
+          <li><a href="https://draftwise-mocha.vercel.app">Draftwise</a> — AI interview preparation</li>
+          <li>KevCal — photo to calendar (runs locally) · <a href="https://github.com/FieryLightning/KevCal">source</a></li>
+          <li><a href="https://ai-coding-field-guide.vercel.app">AI Coding Field Guide</a> — your first app with an AI pair</li>
+          <li><a href="https://fierylightning.github.io/the-dive/">The Dive</a> — learning AI, by depth</li>
+        </ul>
+      </noscript>
+    </section>
+
+    <!-- 03 · SALLE -->
+    <section id="salle" class="sec">
+      <header class="sec-head" data-reveal>
+        <span class="sec-idx">03 <i></i> SALLE D'ARMES</span>
+        <h2>Player profile.</h2>
+      </header>
+
+      <div class="salle-grid">
+        <article class="pcard" data-reveal>
+          <div class="pcard-top"><span>PLAYER CARD</span><span>#01</span></div>
+          <div class="pcard-art">
+            <span class="pcard-ring" aria-hidden="true"></span>
+            <i class="pcard-fencer" aria-hidden="true"></i>
+            <img class="pcard-mark" src="assets/brand/mark.svg" alt="" width="44" height="44">
+          </div>
+          <dl class="pcard-stats">
+            <div><dt>Player</dt><dd id="pc-name">Kevin Y.</dd></div>
+            <div><dt>Handle</dt><dd><a id="pc-handle" href="https://github.com/FieryLightning" target="_blank" rel="noopener">@FieryLightning</a></dd></div>
+            <div><dt>Class</dt><dd>Sabreur · Builder</dd></div>
+            <div><dt>Base</dt><dd id="pc-edu">CS — UW–Madison</dd></div>
+            <div><dt>Weapon</dt><dd id="pc-weapon">Sabre</dd></div>
+            <div><dt>Target</dt><dd>Everything above the waist</dd></div>
+            <div><dt>Builds</dt><dd id="pc-builds">6 shipped · 4 live</dd></div>
+          </dl>
+        </article>
+
+        <div class="salle-main">
+          <div class="bio" id="bio" data-reveal></div>
+          <h3 class="loadout-title" data-reveal><span>LOADOUT</span><i></i></h3>
+          <div class="loadout" id="loadout"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · DRILL -->
+    <section id="drill" class="sec">
+      <header class="sec-head" data-reveal>
+        <span class="sec-idx">04 <i></i> REFLEX DRILL</span>
+        <h2>Decided in milliseconds.</h2>
+        <p>Sabre is the fastest weapon in fencing. Wait for the green lamp, then click, tap or hit <kbd>Space</kbd>. Five rounds. Go early and you get a yellow card.</p>
+      </header>
+
+      <div class="drill" data-reveal>
+        <div class="drill-box" tabindex="0" role="button" aria-label="Reflex drill. Press to start, then press again when the lamp turns green." data-state="idle">
+          <div class="drill-lamps"><i class="dl dl-red"></i><i class="dl dl-green"></i></div>
+          <div class="drill-card" aria-hidden="true"></div>
+          <div class="drill-msg" aria-live="assertive">PRESS TO START</div>
+          <div class="drill-sub">5 rounds · hit when the lamp turns green</div>
+          <div class="drill-rounds" aria-hidden="true"></div>
+        </div>
+
+        <div class="drill-side">
+          <div class="drill-stats">
+            <div class="ds"><span>LAST</span><div class="seg" data-stat="last"></div><em>ms</em></div>
+            <div class="ds"><span>AVG</span><div class="seg" data-stat="avg"></div><em>ms</em></div>
+            <div class="ds ds-best"><span>BEST</span><div class="seg" data-stat="best"></div><em>ms</em></div>
+          </div>
+          <div class="drill-rank">UNRANKED</div>
+          <button class="btn btn-primary drill-start" type="button"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-bolt"></use></svg><span>Start drill</span></button>
+          <p class="drill-note">Timed from the frame the lamp is painted to your input's own timestamp. Your best is saved in this browser only.</p>
+        </div>
+      </div>
+
+      <img class="drill-piste" src="assets/art/piste.svg" alt="Top-down diagram of a 14 metre fencing piste with centre line, en garde lines and warning zones" width="1400" height="150" loading="lazy" data-reveal>
+    </section>
+
+    <!-- 05 · SALUTE -->
+    <section id="salute" class="sec salute">
+      <div class="salute-inner" data-reveal>
+        <span class="sec-idx">05 <i></i> SALUTE</span>
+        <h2 class="salute-big">Salut. <span>Bon match.</span></h2>
+        <p>Want a walkthrough of a private build, or to talk shop about AI tools or sabre? Find me here.</p>
+        <div class="salute-cta">
+          <a class="btn btn-primary" id="gh-link" href="https://github.com/FieryLightning" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-github"></use></svg><span class="lbl">github.com/FieryLightning</span></a>
+          <a class="btn btn-ghost" id="mail-link" href="#" hidden><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-external"></use></svg><span class="lbl"></span></a>
+        </div>
+      </div>
+
+      <footer class="foot">
+        <span>© <span id="year">2026</span> KYUAN</span>
+        <span class="foot-tech">Hand-built: vanilla JS modules · WebGL2 transform feedback · Web Audio synthesis · View Transitions · zero dependencies, no build step · GitHub Pages</span>
+      </footer>
+    </section>
+  </main>
+
+  <div class="gpu" id="gpu" aria-hidden="true">BOOTING FIELD…</div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div id="term" class="term" role="dialog" aria-label="Terminal" hidden>
+    <div class="term-bar">
+      <span class="term-dots"><i></i><i></i><i></i></span>
+      <span>kyuan@piste: ~</span>
+      <button class="term-x" type="button" aria-label="Close terminal">esc ✕</button>
+    </div>
+    <div class="term-out" aria-live="polite"></div>
+    <label class="term-line"><span class="t-ps">kyuan@piste:~$</span><input class="term-in" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command"></label>
+  </div>
+</body>
+</html>

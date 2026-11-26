@@ -1,0 +1,108 @@
+// ─────────────────────────────────────────────────────────────
+//  Single source of truth for the site.
+//  Edit this file to change the profile or add / remove builds.
+//
+//  A project with a `url` is shown as LIVE (green lamp) and is
+//  clickable. Without a `url` it is shown as text only (red lamp).
+//  `source` is optional: a link to a public repository.
+// ─────────────────────────────────────────────────────────────
+
+export const profile = {
+  handle: 'KYUAN',
+  name: 'Kevin Y.',
+  github: 'FieryLightning',
+  githubUrl: 'https://github.com/FieryLightning',
+  email: '', // optional: add an address to show a "mail" button in the Salute section
+  education: 'CS — University of Wisconsin–Madison',
+  educationShort: 'CS @ UW–Madison',
+  role: 'Builder of AI tools & apps',
+  weapon: 'Sabre',
+  taglines: [
+    'fast hands. clean cuts. shipped code.',
+    'the attacker has right of way.',
+    'commit to the attack. then ship it.',
+    'decided in milliseconds. built to last.',
+  ],
+  bio: [
+    'I fence sabre. It is the fastest weapon in fencing: the whole target above the waist is open, the edge counts as much as the point, and the fencer who commits first holds right of way. A touch is decided in a fraction of a second.',
+    'I build software the same way. Pick the line, commit, cut clean, ship. Lately that means AI tools that respect the person using them: study coaches that work offline, interview practice that stays in your browser, video-to-guide pipelines that can run entirely on a Mac, and a calendar reader that refuses to guess a date.',
+  ],
+};
+
+export const loadout = [
+  { slot: 'Languages', icon: 'i-code', items: ['TypeScript', 'JavaScript', 'Python', 'Swift', 'SQL'] },
+  { slot: 'Front end', icon: 'i-target', items: ['React 19', 'Next.js', 'Vite', 'PWA / Service Workers', 'IndexedDB (Dexie)'] },
+  { slot: 'AI', icon: 'i-cpu', items: ['Claude API', 'OpenAI', 'Gemini', 'Whisper.cpp', 'Ollama · Qwen', 'Reinforcement learning'] },
+  { slot: 'Platform', icon: 'i-bolt', items: ['Node.js', 'Vercel', 'Cloudflare', 'GitHub Pages', 'Drizzle ORM', 'Apple Vision'] },
+];
+
+export const projects = [
+  {
+    id: 'studyarea',
+    name: 'StudyArea',
+    tagline: 'Offline-first AI study coach',
+    description:
+      'Turns notes, files, links, audio or video into a topic tree and study packs, then drills you with spaced repetition, quizzes, worked examples and a study buddy you can teach. Bring your own Claude, OpenAI or Gemini key.',
+    stack: ['React 19', 'TypeScript', 'Vite', 'IndexedDB', 'PWA', 'Claude · OpenAI · Gemini'],
+    logo: 'assets/logos/studyarea.svg',
+    accent: '#91b56e',
+    url: 'https://studyarea.vercel.app',
+  },
+  {
+    id: 'clearsteps',
+    name: 'ClearSteps',
+    tagline: 'Video → step-by-step guide',
+    description:
+      'Feed it a how-to video and get written instructions with original timestamps, real screenshots, prerequisites and honest uncertainty notes. Ads and filler are cut from the guide. Runs on phone, tablet or Mac, including a fully local Mac edition.',
+    stack: ['Next.js', 'TypeScript', 'Mediabunny', 'Whisper.cpp', 'Ollama · Qwen', 'Gemini · OpenAI'],
+    logo: 'assets/logos/clearsteps.svg',
+    accent: '#3254dd',
+    privateNote: 'Private build',
+  },
+  {
+    id: 'draftwise',
+    name: 'Draftwise',
+    tagline: 'AI interview preparation',
+    description:
+      'Map your background against the job, practise answers out loud, build your own question bank, then run a live voice mock interview with feedback. Everything you write stays in your browser.',
+    stack: ['Vanilla JS', 'OpenAI voice', 'Strict CSP', 'Local-first', 'PDF export'],
+    logo: 'assets/logos/draftwise.svg',
+    accent: '#2b45de',
+    url: 'https://draftwise-mocha.vercel.app',
+  },
+  {
+    id: 'kevcal',
+    name: 'KevCal',
+    tagline: 'Photo → calendar, never guessing',
+    description:
+      'Point your phone at anything with a date on it and get a calendar entry. An AI reader reports only what is printed; a separate deterministic checker does every bit of date math, and when the two disagree it asks you instead of guessing.',
+    stack: ['Node.js 22', 'Zero dependencies', 'Swift', 'Apple Vision OCR', 'Gemini · OpenAI'],
+    logo: 'assets/logos/kevcal.png',
+    accent: '#2f7aa8',
+    privateNote: 'Runs on your own machine',
+    source: 'https://github.com/FieryLightning/KevCal',
+  },
+  {
+    id: 'field-guide',
+    name: 'AI Coding Field Guide',
+    tagline: 'Your first app, with an AI pair',
+    description:
+      'A mobile-first, offline-ready guide to building a first web app with Codex or Claude Code. Pick your tool at the top and every step, prompt and command adapts to it.',
+    stack: ['React 19', 'TypeScript', 'Vite', 'PWA', 'Offline mode'],
+    logo: 'assets/logos/ai-field-guide.png',
+    accent: '#c4410b',
+    url: 'https://ai-coding-field-guide.vercel.app',
+  },
+  {
+    id: 'the-dive',
+    name: 'The Dive',
+    tagline: 'Learning AI, by depth',
+    description:
+      'A hand-picked reading list for learning AI, organised by depth instead of category: five zones from the Tide Pool to Build Your Own Submarine, 40 entries. One file, no build step, no tracking.',
+    stack: ['Single-file HTML', 'CSS', 'GitHub Pages', 'No tracking'],
+    logo: 'assets/logos/the-dive.svg',
+    accent: '#2fd4ff',
+    url: 'https://fierylightning.github.io/the-dive/',
+    source: 'https://github.com/FieryLightning/the-dive',
+  },
+];

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hors piste · KYUAN</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#04060a">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=JetBrains+Mono:wght@500&display=swap">
+  <style>
+    :root { --bg: #04060a; --steel: #e8f6ff; --muted: #64748a; --blade: #7fe3ff; --green: #1dff8e; --red: #ff2d55; --amber: #ffc53d; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: grid; place-items: center; padding: 24px;
+      background:
+        radial-gradient(900px 600px at 50% 0%, rgba(255, 45, 85, .1), transparent 60%),
+        linear-gradient(rgba(127, 227, 255, .04) 1px, transparent 1px) 0 0 / 64px 64px,
+        linear-gradient(90deg, rgba(127, 227, 255, .04) 1px, transparent 1px) 0 0 / 64px 64px,
+        var(--bg);
+      color: #aebdd0; font: 500 14px/1.6 'JetBrains Mono', ui-monospace, Menlo, monospace; text-align: center;
+    }
+    .code { font: 700 clamp(110px, 26vw, 260px)/.85 'Chakra Petch', system-ui, sans-serif; color: var(--steel); letter-spacing: .02em; position: relative; }
+    .code span { color: transparent; -webkit-text-stroke: 2px var(--red); }
+    .call { margin: 18px 0 8px; font: 700 clamp(26px, 5vw, 44px)/1 'Chakra Petch', system-ui, sans-serif; letter-spacing: .14em; color: var(--red); }
+    .card { display: inline-block; width: 26px; height: 36px; margin-right: 10px; vertical-align: -6px; border-radius: 3px; background: var(--amber); transform: rotate(12deg); box-shadow: 0 0 24px rgba(255, 197, 61, .5); }
+    p { max-width: 44ch; margin: 14px auto 0; }
+    svg { display: block; width: min(560px, 90vw); margin: 34px auto 0; }
+    a.btn {
+      display: inline-flex; gap: 10px; margin-top: 30px; padding: 14px 22px;
+      background: var(--steel); color: #04060a; text-decoration: none; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; font-size: 12px;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    }
+    a.btn:hover { background: #fff; box-shadow: inset 0 -3px 0 var(--green); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="code">4<span>0</span>4</div>
+    <div class="call"><i class="card" aria-hidden="true"></i>HORS PISTE</div>
+    <p>You stepped off the strip. In sabre, crossing the rear limit line costs a touch. This page doesn't exist.</p>
+    <svg viewBox="0 0 1400 150" aria-hidden="true">
+      <rect x="1" y="1" width="1398" height="148" fill="rgba(127,227,255,.04)" stroke="rgba(127,227,255,.35)" stroke-width="2"/>
+      <rect x="1" y="1" width="199" height="148" fill="rgba(255,45,85,.18)"/>
+      <rect x="1200" y="1" width="199" height="148" fill="rgba(255,45,85,.18)"/>
+      <g stroke="rgba(127,227,255,.6)" stroke-width="3"><line x1="500" y1="0" x2="500" y2="150"/><line x1="900" y1="0" x2="900" y2="150"/></g>
+      <line x1="700" y1="0" x2="700" y2="150" stroke="#e8f6ff" stroke-width="4"/>
+      <circle cx="1460" cy="75" r="16" fill="#ff2d55"><animate attributeName="cx" values="1300;1460;1460" dur="2.4s" repeatCount="indefinite"/></circle>
+    </svg>
+    <a class="btn" id="home" href="/">← Back on the piste</a>
+  </main>
+  <script>
+    // Site root. '/' for a user site (username.github.io).
+    // For a project site (username.github.io/repo/) change it to '/repo/'.
+    var HOME = '/';
+    document.getElementById('home').href = HOME;
+  </script>
+</body>
+</html>

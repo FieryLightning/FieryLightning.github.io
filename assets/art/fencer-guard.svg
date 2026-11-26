@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 180 100" fill="currentColor">
+  <title>Sabre fencer en garde, facing right</title>
+  <desc>A masked fencer holds a straight sabre forward and upward, with both knees bent and the free arm lifted behind.</desc>
+  <g id="fencer-guard-figure" fill="currentColor">
+    <!-- Small open cells suggest the mesh at the front of the mask. -->
+    <path fill-rule="evenodd" d="M66 4C73 1 81 5 83 12L84 20 80 27 70 29 63 24 60 16 62 8ZM77 10l2 1-1 2-2-1Zm2 6 2 1-1 2-2-1Zm-1 6 2 1-1 2-2-1Z"/>
+    <path d="M66 26 76 27 77 32 83 34 88 43 98 45 116 33 120 37 100 53 95 54 80 48 80 56 68 63 59 58 61 40 51 39 40 27 37 14 34 12 34 7 40 6 43 11 44 23 55 31 65 30Z"/>
+    <path d="M62 55 73 58 59 75 48 90 49 94 44 97 22 97 21 93 39 89 48 69Z"/>
+    <path d="M73 55 82 55 103 66 104 71 100 90 111 92 115 97 91 97 89 92 92 74 70 65Z"/>
+    <!-- The bell broadens at the hand; its bow closes at the pommel. -->
+    <path fill-rule="evenodd" d="m115 30 5-4c5 1 9 5 10 10l-2 6c-5 4-11 4-15 0l-1-5 3-1 1 5c3 2 7 1 10-1l1-3c-1-4-3-6-7-7l-3 3Z"/>
+    <path d="m119 35 4 4-8 8-3-3Zm6-7L176 2l-2 4-48 25Z"/>
+  </g>
+</svg>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1200 160" fill="none">
+  <title>Modern fencing sabre</title>
+  <desc>A straight, slim sport blade points right from a metallic bell guard, swept knuckle bow, wrapped grip and small pommel nut.</desc>
+  <defs>
+    <linearGradient id="sabre-blade" x1="0" y1="64" x2="0" y2="77" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3a4a5c"/>
+      <stop offset="0.25" stop-color="#9fb6cc"/>
+      <stop offset="0.48" stop-color="#e8f6ff"/>
+      <stop offset="0.63" stop-color="#9fb6cc"/>
+      <stop offset="1" stop-color="#3a4a5c"/>
+    </linearGradient>
+    <linearGradient id="sabre-shell" x1="186" y1="21" x2="256" y2="122" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3a4a5c"/>
+      <stop offset="0.24" stop-color="#e8f6ff"/>
+      <stop offset="0.38" stop-color="#9fb6cc"/>
+      <stop offset="0.65" stop-color="#3a4a5c"/>
+      <stop offset="0.85" stop-color="#9fb6cc"/>
+      <stop offset="1" stop-color="#e8f6ff"/>
+    </linearGradient>
+    <linearGradient id="sabre-grip" x1="0" y1="65" x2="0" y2="88" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3a4a5c"/>
+      <stop offset="0.43" stop-color="#0a0f17"/>
+      <stop offset="1" stop-color="#04060a"/>
+    </linearGradient>
+    <linearGradient id="sabre-nut" x1="60" y1="68" x2="80" y2="91" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8f6ff"/>
+      <stop offset="0.5" stop-color="#9fb6cc"/>
+      <stop offset="1" stop-color="#3a4a5c"/>
+    </linearGradient>
+    <filter id="sabre-glow" x="-2%" y="-300%" width="104%" height="700%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+  </defs>
+  <!-- The two long edges converge gently; the end is blunted, as on a sport sabre. -->
+  <path d="M250 65.5 1167 68.5" stroke="#7fe3ff" stroke-width="3" opacity="0.34" filter="url(#sabre-glow)"/>
+  <path d="M248 64 1166 67.5Q1170 67.5 1170 70Q1170 72 1166 72L248 77Z" fill="url(#sabre-blade)"/>
+  <path d="M263 67 1166 69.1" stroke="#e8f6ff" stroke-width="1.2" opacity="0.94"/>
+  <path d="M263 75.3 1166 71.2" stroke="#7fe3ff" stroke-width="0.7" opacity="0.48"/>
+  <path d="M250 69 389 69.5 389 73 250 75Z" fill="#e8f6ff" opacity="0.12"/>
+  <!-- A short, tapering, wrapped grip sits inside the open bow. -->
+  <path d="M77 69 200 65Q208 65 211 71L211 78Q207 83 200 83L78 88Q72 85 72 79Q72 73 77 69Z" fill="url(#sabre-grip)" stroke="#3a4a5c" stroke-width="1.2"/>
+  <path d="m85 69 7 18m7-19 7 18m7-18 7 17m7-18 7 18m7-18 7 17m7-18 7 18m7-18 7 17m7-18 7 18" stroke="#9fb6cc" stroke-width="1.4" opacity="0.5"/>
+  <path d="M82 71 197 67.6" stroke="#9fb6cc" opacity="0.27"/>
+  <path d="M199 64 211 64 213 83 201 84Z" fill="url(#sabre-nut)"/>
+  <!-- One continuous shell sweeps around the fingers and back to the pommel. -->
+  <path d="M211 20C240 21 260 43 263 70C265 92 253 113 231 125C187 148 112 141 75 116C65 109 60 99 61 88L71 88C70 98 76 108 87 114C123 133 184 136 219 119C238 110 246 94 245 77C244 60 230 50 211 49L197 47 197 27Z" fill="url(#sabre-shell)"/>
+  <path d="M211 23C236 24 256 44 259 70C261 91 250 110 230 121" stroke="#e8f6ff" stroke-width="1.3" opacity="0.84"/>
+  <path d="M199 30C218 25 239 39 248 58C237 49 224 44 207 45L200 43Z" fill="#e8f6ff" opacity="0.17"/>
+  <path d="M76 113C113 141 186 144 229 125" stroke="#e8f6ff" stroke-width="1.1" opacity="0.65"/>
+  <path d="M87 113C124 131 183 134 218 117" stroke="#04060a" stroke-width="1.4" opacity="0.65"/>
+  <path d="M206 50C228 52 242 64 244 80" stroke="#04060a" stroke-width="1.5" opacity="0.55"/>
+  <path d="M62 69 76 68 80 73 80 85 75 90 62 89 58 85 58 74Z" fill="url(#sabre-nut)"/>
+  <path d="M59 74H68V84H59M73 72V86" stroke="#3a4a5c" stroke-width="1.2"/>
+  <path d="M62 70H74" stroke="#e8f6ff" opacity="0.85"/>
+</svg>
