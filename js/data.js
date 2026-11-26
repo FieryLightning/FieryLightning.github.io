@@ -15,7 +15,7 @@ export const profile = {
   email: '', // optional: add an address to show a "mail" button in the Salute section
   education: 'CS graduate, University of Wisconsin–Madison',
   educationShort: 'CS graduate, UW–Madison',
-  role: 'Builder of AI tools & apps',
+  role: 'Builder of AI tools, apps & platforms',
   weapon: 'Sabre',
   taglines: [
     'fast hands. clean cuts. shipped code.',
@@ -25,7 +25,7 @@ export const profile = {
   ],
   bio: [
     'I fence sabre. It is the fastest weapon in fencing: the whole target above the waist is open, the edge counts as much as the point, and the fencer who commits first holds right of way. A touch is decided in a fraction of a second.',
-    'I build software the same way. Pick the line, commit, cut clean, ship. Lately that means AI tools that respect the person using them: study coaches that work offline, interview practice that stays in your browser, video-to-guide pipelines that can run entirely on a Mac, and a calendar reader that refuses to guess a date.',
+    'I build software the same way. Pick the line, commit, cut clean, ship. Lately that means AI tools that respect the person using them: study coaches that work offline, video-to-guide pipelines that can run entirely on a Mac, a calendar reader that refuses to guess a date, and FormuAI, a drug-formulation platform I took over and now develop.',
   ],
 };
 
@@ -33,7 +33,7 @@ export const loadout = [
   { slot: 'Languages', icon: 'i-code', items: ['TypeScript', 'JavaScript', 'Python', 'Swift', 'SQL'] },
   { slot: 'Front end', icon: 'i-target', items: ['React 19', 'Next.js', 'Vite', 'PWA / Service Workers', 'IndexedDB (Dexie)'] },
   { slot: 'AI', icon: 'i-cpu', items: ['Claude API', 'OpenAI', 'Gemini', 'Whisper.cpp', 'Ollama · Qwen', 'Reinforcement learning'] },
-  { slot: 'Platform', icon: 'i-bolt', items: ['Node.js', 'Vercel', 'Cloudflare', 'GitHub Pages', 'Drizzle ORM', 'Apple Vision'] },
+  { slot: 'Platform', icon: 'i-bolt', items: ['Node.js', 'FastAPI', 'Supabase · Postgres', 'Vercel', 'Cloudflare', 'GitHub Pages', 'Drizzle ORM', 'Apple Vision'] },
 ];
 
 export const projects = [
@@ -72,6 +72,19 @@ export const projects = [
     url: 'https://ai-coding-field-guide.vercel.app',
   },
   {
+    id: 'formuai',
+    name: 'FormuAI',
+    tagline: 'AI platform for drug formulation',
+    description:
+      'Production tooling for PLGA microsphere formulation research. Predict the drug-release curve from formulation parameters, or work backwards from a target profile. AI reads figures in published papers, scientists confirm the data, and confirmed rows train the model.',
+    stack: ['Next.js 14', 'TypeScript', 'FastAPI · Python', 'ML release model', 'Supabase · Postgres', 'Gemini'],
+    logo: 'assets/logos/formuai.png',
+    accent: '#5cc796',
+    url: 'https://formuai-v1.vercel.app',
+    access: 'By invitation',
+    role: 'Took over development · Peregrine Technology',
+  },
+  {
     id: 'clearsteps',
     name: 'ClearSteps',
     tagline: 'Video → step-by-step guide',
@@ -81,17 +94,6 @@ export const projects = [
     logo: 'assets/logos/clearsteps.svg',
     accent: '#3254dd',
     privateNote: 'Private build',
-  },
-  {
-    id: 'draftwise',
-    name: 'Draftwise',
-    tagline: 'AI interview preparation',
-    description:
-      'Map your background against the job, practise answers out loud, build your own question bank, then run a live voice mock interview with feedback. Everything you write stays in your browser.',
-    stack: ['Vanilla JS', 'OpenAI voice', 'Strict CSP', 'Local-first', 'PDF export'],
-    logo: 'assets/logos/draftwise.svg',
-    accent: '#2b45de',
-    url: 'https://draftwise-mocha.vercel.app',
   },
   {
     id: 'kevcal',

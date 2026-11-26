@@ -104,9 +104,10 @@ export function createTerminal({ root, profile, projects, loadout, actions }) {
         const p = find(q);
         if (!p) return print(`<span class="t-r">info: no build matches “${esc(q ?? '')}”.</span>`);
         print(`${lamp(p)} <span class="t-a">${esc(p.name)}</span> — ${esc(p.tagline)}`);
+        if (p.role) print(`<span class="t-c">role </span> ${esc(p.role)}`);
         print(`<span class="t-m">${esc(p.description)}</span>`);
         print(`<span class="t-c">stack</span> ${p.stack.map(esc).join(' · ')}`);
-        if (p.url) print(`<span class="t-c">link </span> <a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.url)}</a>`);
+        if (p.url) print(`<span class="t-c">link </span> <a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.url)}</a>${p.access ? ` <span class="t-y">(${esc(p.access.toLowerCase())})</span>` : ''}`);
         else print(`<span class="t-c">link </span> <span class="t-r">${esc(p.privateNote || 'private build')}</span>`);
       },
     },

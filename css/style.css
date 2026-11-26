@@ -265,7 +265,7 @@ main { position: relative; z-index: 2; overflow-x: clip; }
 @keyframes cutB { 0% { transform: none; } 16% { transform: translate(2%, 6%) rotate(1deg); } 100% { transform: none; } }
 @keyframes seam { 0% { opacity: 0; } 8% { opacity: 1; } 100% { opacity: 0; } }
 
-.hero-role { font: 500 clamp(17px, 1.8vw, 21px)/1.5 var(--body); color: var(--steel-2); max-width: 36ch; }
+.hero-role { font: 500 clamp(17px, 1.8vw, 21px)/1.5 var(--body); color: var(--steel-2); max-width: 46ch; }
 .typer { margin-top: 18px; font: 500 clamp(13px, 1.3vw, 15px) var(--mono); color: var(--blade); min-height: 1.6em; }
 .typer .prompt { color: var(--green); }
 .caret { display: inline-block; width: .6em; height: 1.1em; margin-left: 2px; vertical-align: -0.2em; background: var(--green); animation: blink 1s steps(1) infinite; box-shadow: 0 0 8px var(--green); }
@@ -484,6 +484,9 @@ b.r { color: var(--red); font-weight: 600; }
 .card:hover .emblem img { transform: scale(1.06) rotate(-3deg); }
 .card-name { font: 600 23px/1.15 var(--display); color: var(--steel); letter-spacing: .01em; }
 .card-tag { margin-top: 4px; font: 500 12px var(--mono); color: var(--blade); }
+.card-role { display: flex; align-items: baseline; gap: 10px; margin-top: -4px; font: 500 11.5px/1.5 var(--mono); color: var(--steel-2); }
+.card-role span { flex: none; padding: 2px 6px; font-size: 9.5px; letter-spacing: .2em; color: var(--amber); border: 1px solid rgba(255, 197, 61, .35); }
+.card-access { font: 600 10px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--amber); padding: 4px 8px; border: 1px dashed rgba(255, 197, 61, .45); }
 .card-desc { flex: 1; font-size: 14.5px; line-height: 1.62; color: var(--text); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
 .chips li {

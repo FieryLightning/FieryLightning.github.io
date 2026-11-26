@@ -131,7 +131,7 @@ function cardHTML(p, i) {
     ? `<a class="card-enter" href="${esc(p.url)}" target="_blank" rel="noopener" aria-label="Open ${esc(p.name)} (opens in a new tab)">
          <span>Enter</span>${icon('i-external')}
        </a>
-       <span class="card-host">${esc(host(p.url))}</span>`
+       ${p.access ? `<span class="card-access">${esc(p.access)}</span>` : `<span class="card-host">${esc(host(p.url))}</span>`}`
     : `<span class="card-locked">${icon('i-lock')}<span>${esc(p.privateNote || 'Private build')} · no public link</span></span>`;
   const src = p.source ? `<a class="card-src" href="${esc(p.source)}" target="_blank" rel="noopener">${icon('i-github')}<span>Source</span></a>` : '';
   return `
@@ -149,6 +149,7 @@ function cardHTML(p, i) {
         <p class="card-tag">${esc(p.tagline)}</p>
       </div>
     </div>
+    ${p.role ? `<p class="card-role"><span>ROLE</span>${esc(p.role)}</p>` : ''}
     <p class="card-desc">${esc(p.description)}</p>
     <ul class="chips" aria-label="Built with">${p.stack.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
     <footer class="card-foot">${foot}${src}</footer>
