@@ -41,10 +41,10 @@ Logos go in `assets/logos/`. Each project also gets an ink drawing on Off the Pi
 
 ## Cache versions
 
-GitHub Pages lets browsers reuse files for 10 minutes, so right after a deploy a visitor can get the new HTML with an old script. Every CSS/JS link and import carries a version (`?v=10`). After changing any CSS or JS, bump it everywhere in one go:
+GitHub Pages lets browsers reuse files for 10 minutes, so right after a deploy a visitor can get the new HTML with an old script. Every CSS/JS link and import carries the same version number (`?v=N` in the `.html` and `.js` files). After changing any CSS or JS, raise it by one everywhere in one go, for example from 11 to 12:
 
 ```bash
-grep -rl '?v=10' --include='*.html' --include='*.js' . | xargs sed -i '' 's/?v=10/?v=11/g'
+grep -rl '?v=11' --include='*.html' --include='*.js' . | xargs sed -i '' 's/?v=11/?v=12/g'
 ```
 
 ## Preview locally

@@ -1,11 +1,11 @@
-import { profile, projects, loadout } from './data.js?v=10';
-import { createField } from './field.js?v=10';
-import { createBlade } from './blade.js?v=10';
-import { sfx } from './audio.js?v=10';
-import { renderSeg } from './seg.js?v=10';
-import { createTerminal } from './terminal.js?v=10';
-import { createDrill } from './reflex.js?v=10';
-import { waitForGate } from './gate.js?v=10';
+import { profile, projects, loadout } from './data.js?v=11';
+import { createField } from './field.js?v=11';
+import { createBlade } from './blade.js?v=11';
+import { sfx } from './audio.js?v=11';
+import { renderSeg } from './seg.js?v=11';
+import { createTerminal } from './terminal.js?v=11';
+import { createDrill } from './reflex.js?v=11';
+import { waitForGate } from './gate.js?v=11';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -138,9 +138,10 @@ function cardHTML(p, i) {
     : `<span class="card-locked">${icon('i-lock')}<span>${esc(p.privateNote || 'Private build')} · no public link</span></span>`;
   const src = p.source ? `<a class="card-src" href="${esc(p.source)}" target="_blank" rel="noopener">${icon('i-github')}<span>Source</span></a>` : '';
   return `
-  <article class="card" data-status="${isLive ? 'live' : 'private'}" data-id="${esc(p.id)}" style="--accent:${esc(p.accent)};view-transition-name:card-${esc(p.id)}" data-reveal>
+  <article class="card" data-status="${isLive ? 'live' : 'private'}" data-id="${esc(p.id)}" style="--accent:${esc(p.accent)};--tint:${esc(p.tint || p.accent)};view-transition-name:card-${esc(p.id)}" data-reveal>
     <span class="card-glint" aria-hidden="true"></span>
     <span class="card-denied" aria-hidden="true">ACCESS DENIED</span>
+    ${isLive ? `<span class="card-armed" aria-hidden="true">${fine ? 'DOUBLE-CLICK' : 'DOUBLE-TAP'} TO OPEN</span>` : ''}
     <header class="card-top">
       <span class="card-idx">${idx}</span>
       <span class="card-state"><i class="lamp ${isLive ? 'lamp-green' : 'lamp-red'}"></i>${isLive ? 'LIVE' : 'PRIVATE'}</span>
@@ -178,17 +179,38 @@ for (const card of $$('.card', grid)) {
     });
   }
   card.addEventListener('pointerenter', () => sfx.blip(1700));
+  // a double click selects a word by default; not on a card
+  card.addEventListener('mousedown', (e) => { if (e.detail > 1 && !e.target.closest('a')) e.preventDefault(); });
+  // Live cards open on a double click or double tap, timed here rather than
+  // with dblclick, which mobile browsers don't send reliably. One click only
+  // says so. The Enter button and Source link stay ordinary one-click links.
+  let lastClick = 0;
+  const touch = () => {
+    const r = card.getBoundingClientRect();
+    blade.slash(r.left - 20, r.bottom - 10, r.right + 20, r.top + 10, { dur: 180, width: 3, glow: '#1dff8e' });
+    sfx.touch();
+    card.classList.remove('armed', 'touched');
+    void card.offsetWidth;
+    card.classList.add('touched');
+  };
   card.addEventListener('click', (e) => {
     if (e.target.closest('.card-src')) return;
-    const r = card.getBoundingClientRect();
     if (card.dataset.status === 'live') {
-      blade.slash(r.left - 20, r.bottom - 10, r.right + 20, r.top + 10, { dur: 180, width: 3, glow: '#1dff8e' });
-      sfx.touch();
-      card.classList.remove('touched');
-      void card.offsetWidth;
-      card.classList.add('touched');
-      // make the whole card a target without nesting interactive elements
-      if (!e.target.closest('a')) window.open(card.querySelector('.card-enter').href, '_blank', 'noopener');
+      if (e.target.closest('.card-enter')) { touch(); return; }
+      const now = performance.now();
+      const second = now - lastClick < 450;
+      lastClick = second ? 0 : now;
+      if (!second) {
+        sfx.blip(1400);
+        card.classList.remove('armed');
+        void card.offsetWidth;
+        card.classList.add('armed');
+        clearTimeout(card._armed);
+        card._armed = setTimeout(() => card.classList.remove('armed'), 1600);
+        return;
+      }
+      touch();
+      window.open(card.querySelector('.card-enter').href, '_blank', 'noopener');
     } else {
       sfx.denied();
       card.classList.remove('denied');

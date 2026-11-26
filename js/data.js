@@ -5,6 +5,7 @@
 //  A project with a `url` is shown as LIVE (green lamp) and is
 //  clickable. Without a `url` it is shown as text only (red lamp).
 //  `source` is optional: a link to a public repository.
+//  `tint` is the light glass colour of the project's card.
 // ─────────────────────────────────────────────────────────────
 
 export const profile = {
@@ -56,6 +57,7 @@ export const projects = [
     stack: ['Single-file HTML', 'CSS', 'GitHub Pages', 'No tracking'],
     logo: 'assets/logos/the-dive.svg',
     accent: '#2fd4ff',
+    tint: '#84dfff', // card glass colour on the main page
     url: 'https://fierylightning.github.io/the-dive/',
     source: 'https://github.com/FieryLightning/the-dive',
   },
@@ -68,6 +70,7 @@ export const projects = [
     stack: ['React 19', 'TypeScript', 'Vite', 'IndexedDB', 'PWA', 'Claude · OpenAI · Gemini'],
     logo: 'assets/logos/studyarea.svg',
     accent: '#91b56e',
+    tint: '#c2dd94', // card glass colour on the main page
     url: 'https://studyarea.vercel.app',
   },
   {
@@ -79,6 +82,7 @@ export const projects = [
     stack: ['React 19', 'TypeScript', 'Vite', 'PWA', 'Offline mode'],
     logo: 'assets/logos/ai-field-guide.png',
     accent: '#c4410b',
+    tint: '#ffbe96', // card glass colour on the main page
     url: 'https://ai-coding-field-guide.vercel.app',
   },
   {
@@ -90,6 +94,7 @@ export const projects = [
     stack: ['Next.js 14', 'TypeScript', 'FastAPI · Python', 'ML release model', 'Supabase · Postgres', 'Gemini'],
     logo: 'assets/logos/formuai.png',
     accent: '#5cc796',
+    tint: '#8ae7c7', // card glass colour on the main page
     url: 'https://formuai-v1.vercel.app',
     access: 'By invitation',
     role: 'Took over development · Peregrine Technology',
@@ -103,6 +108,7 @@ export const projects = [
     stack: ['Next.js', 'TypeScript', 'Mediabunny', 'Whisper.cpp', 'Ollama · Qwen', 'Gemini · OpenAI'],
     logo: 'assets/logos/clearsteps.svg',
     accent: '#3254dd',
+    tint: '#cac8ff', // card glass colour on the main page
     privateNote: 'Private build',
   },
   {
@@ -114,6 +120,7 @@ export const projects = [
     stack: ['Node.js 22', 'Zero dependencies', 'Swift', 'Apple Vision OCR', 'Gemini · OpenAI'],
     logo: 'assets/logos/kevcal.png',
     accent: '#2f7aa8',
+    tint: '#ffb6da', // card glass colour on the main page
     privateNote: 'Runs on your own machine',
     source: 'https://github.com/FieryLightning/KevCal',
   },

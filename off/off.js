@@ -6,7 +6,7 @@
 //     position, threading through the margins and the drawings
 // ─────────────────────────────────────────────────────────────
 
-import { profile, projects, loadout, offPiste } from '../js/data.js?v=10';
+import { profile, projects, loadout, offPiste } from '../js/data.js?v=11';
 
 // the ?v= this script was loaded with; drawings are fetched with the same one
 // so a page never mixes files from two deploys (GitHub Pages caches for 10 min)
@@ -152,10 +152,11 @@ function waypoints() {
   const runs = [[]];
   const add = (x, y) => runs[runs.length - 1].push({ x, y });
 
-  // always leave from the pen's writing tip; on phones the next point
-  // is the margin lane, so the first curve sweeps from the tip to it
+  // always leave from the pen's writing tip, (8, 172) in its 240×180
+  // drawing (held right-handed: nib down and left); on phones the next
+  // point is the margin lane, so the first curve sweeps from the tip to it
   const pen = box($('.ink-nib'));
-  add(pen.l + (pen.w * 232) / 240, pen.t + (pen.h * 172) / 180);
+  add(pen.l + (pen.w * 8) / 240, pen.t + (pen.h * 172) / 180);
 
   for (const el of $$('[data-thread], .ink-sabre')) {
     const b = box(el);

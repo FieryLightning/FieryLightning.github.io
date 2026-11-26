@@ -392,28 +392,33 @@ b.r { color: var(--red); font-weight: 600; }
 .card {
   --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%;
   --accent: var(--blade);
+  --tint: var(--accent);
   position: relative; isolation: isolate;
   display: flex; flex-direction: column; gap: 16px;
   padding: 20px 20px 18px;
+  /* light tinted glass: each project's own colour over a see-through dark base */
   background:
-    linear-gradient(225deg, transparent 17.6px, color-mix(in srgb, var(--accent) 70%, #fff) 17.6px 19px, transparent 19px),
-    linear-gradient(165deg, rgba(16, 23, 34, .94), rgba(7, 10, 16, .97));
-  border: 1px solid rgba(155, 200, 255, .12);
+    linear-gradient(225deg, transparent 17.6px, color-mix(in srgb, var(--tint) 85%, #fff) 17.6px 19px, transparent 19px),
+    radial-gradient(130% 90% at 0% 0%, color-mix(in srgb, var(--tint) 28%, transparent), transparent 62%),
+    linear-gradient(165deg, color-mix(in srgb, var(--tint) 17%, rgba(12, 17, 26, .6)), color-mix(in srgb, var(--tint) 8%, rgba(6, 9, 14, .72)));
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--tint) 32%, transparent);
   clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%);
   transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));
   transition: transform .5s var(--ease), border-color .3s, opacity .8s var(--ease) var(--d, 0ms), translate .8s var(--ease) var(--d, 0ms);
   cursor: pointer;
 }
 .card[hidden] { display: none; }
-.card:hover { border-color: color-mix(in srgb, var(--accent) 55%, rgba(155, 200, 255, .2)); transition: transform .12s linear, border-color .3s, opacity .8s, translate .8s; }
+.card:hover { border-color: color-mix(in srgb, var(--tint) 65%, transparent); transition: transform .12s linear, border-color .3s, opacity .8s, translate .8s; }
 .card::before {
   content: ''; position: absolute; inset: 0; z-index: -1;
-  background: radial-gradient(440px circle at var(--mx) var(--my), color-mix(in srgb, var(--accent) 22%, transparent), transparent 55%);
+  background: radial-gradient(440px circle at var(--mx) var(--my), color-mix(in srgb, var(--tint) 24%, transparent), transparent 55%);
   opacity: 0; transition: opacity .3s;
 }
 .card:hover::before { opacity: 1; }
 .card::after {
-  --bc: color-mix(in srgb, var(--accent) 55%, rgba(127, 227, 255, .4));
+  --bc: color-mix(in srgb, var(--tint) 70%, transparent);
   content: ''; position: absolute; inset: 6px; pointer-events: none;
   background:
     linear-gradient(var(--bc), var(--bc)) left top / 14px 2px no-repeat,
@@ -425,7 +430,7 @@ b.r { color: var(--red); font-weight: 600; }
   opacity: .55; transition: opacity .3s, inset .3s var(--ease);
 }
 .card:hover::after { opacity: 1; inset: 4px; }
-.card > :not(.card-glint):not(.card-denied) { position: relative; z-index: 1; }
+.card > :not(.card-glint):not(.card-denied):not(.card-armed) { position: relative; z-index: 1; }
 .card-glint {
   position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background: linear-gradient(112deg, transparent 36%, rgba(255, 255, 255, .08) 47%, rgba(127, 227, 255, .16) 50%, transparent 62%);
@@ -507,6 +512,16 @@ b.r { color: var(--red); font-weight: 600; }
 .card.denied { animation: shake .42s; }
 @keyframes denied { 0% { opacity: 0; } 8%, 70% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes shake { 0%, 100% { translate: 0; } 20% { translate: -7px; } 40% { translate: 6px; } 60% { translate: -3px; } 80% { translate: 2px; } }
+.card { touch-action: manipulation; }
+.card-armed {
+  position: absolute; inset: 0; z-index: 3;
+  display: grid; place-items: center; padding: 0 20px; text-align: center;
+  font: 700 16px var(--display); letter-spacing: .28em; color: var(--green);
+  text-shadow: 0 0 18px rgba(29, 255, 142, .55);
+  background: rgba(4, 6, 10, .74);
+  opacity: 0; pointer-events: none; transition: opacity .18s;
+}
+.card.armed .card-armed { opacity: 1; }
 .card.touched { animation: touched .8s ease-out; }
 @keyframes touched {
   0% { box-shadow: inset 0 0 0 2px var(--green), inset 0 0 80px rgba(29, 255, 142, .35); }
