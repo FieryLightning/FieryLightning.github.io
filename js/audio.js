@@ -9,7 +9,20 @@ let ctx = null;
 let out = null;
 let noise = null;
 let enabled = false;
+let pending = null; // { fn, at }: the last sound asked for while the engine was asleep
 try { enabled = localStorage.getItem(KEY) === '1'; } catch { /* private mode */ }
+
+// Browsers put the engine to sleep (background tab, screen lock, another app
+// taking the audio; Safari calls it "interrupted" rather than "suspended").
+// Waking is async, so a sound requested just before is played once it is up.
+function wake() {
+  if (!ctx || ctx.state === 'running') return;
+  ctx.resume().then(() => {
+    const p = pending;
+    pending = null;
+    if (p && enabled && ctx.state === 'running' && performance.now() - p.at < 500) p.fn();
+  }, () => { /* not allowed yet: the next gesture tries again */ });
+}
 
 function ensure() {
   if (!ctx) {
@@ -26,10 +39,20 @@ function ensure() {
     const d = noise.getChannelData(0);
     for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
   }
-  if (ctx.state === 'suspended') ctx.resume();
+  wake();
 }
 
-const ready = () => enabled && ctx && ctx.state === 'running';
+const onShow = () => { if (enabled && !document.hidden) wake(); };
+document.addEventListener('visibilitychange', onShow);
+addEventListener('pageshow', onShow);
+
+/** true if a sound can play now; otherwise keeps `retry` for when the engine wakes */
+function ready(retry) {
+  if (!enabled || !ctx) return false;
+  if (ctx.state === 'running') return true;
+  pending = { fn: retry, at: performance.now() };
+  return false;
+}
 
 function env(g, t, peak, attack, decay) {
   g.gain.setValueAtTime(0.0001, t);
@@ -77,7 +100,7 @@ export const sfx = {
 
   /** blade through air + ringing steel */
   shing(intensity = 1) {
-    if (!ready()) return;
+    if (!ready(() => sfx.shing(intensity))) return;
     const t = ctx.currentTime;
     const i = 0.35 + 0.65 * intensity;
     hiss(t, { peak: 0.32 * i, decay: 0.18 + 0.1 * intensity });
@@ -86,7 +109,7 @@ export const sfx = {
   },
   /** blade-on-blade parry */
   parry() {
-    if (!ready()) return;
+    if (!ready(() => sfx.parry())) return;
     const t = ctx.currentTime;
     hiss(t, { type: 'highpass', f0: 3200, f1: 2400, q: 0.7, peak: 0.22, attack: 0.002, decay: 0.07 });
     tone('triangle', 1870, t, 0.09, 0.002, 0.16);
@@ -94,7 +117,7 @@ export const sfx = {
   },
   /** electric scoring box: a touch is scored */
   touch() {
-    if (!ready()) return;
+    if (!ready(() => sfx.touch())) return;
     const t = ctx.currentTime;
     const lp = ctx.createBiquadFilter();
     lp.type = 'lowpass';
@@ -113,19 +136,19 @@ export const sfx = {
   },
   /** small UI tick */
   blip(f = 1400) {
-    if (!ready()) return;
+    if (!ready(() => sfx.blip(f))) return;
     tone('sine', f, ctx.currentTime, 0.04, 0.003, 0.05);
   },
   /** access denied / false start */
   denied() {
-    if (!ready()) return;
+    if (!ready(() => sfx.denied())) return;
     const t = ctx.currentTime;
     tone('sawtooth', 150, t, 0.08, 0.01, 0.26, 92);
     tone('square', 75, t, 0.04, 0.01, 0.26, 60);
   },
   /** rising arm-up for the referee's "Allez!" */
   allez() {
-    if (!ready()) return;
+    if (!ready(() => sfx.allez())) return;
     const t = ctx.currentTime;
     tone('triangle', 520, t, 0.06, 0.01, 0.16, 1560);
     tone('sine', 1040, t + 0.05, 0.04, 0.01, 0.2, 2080);

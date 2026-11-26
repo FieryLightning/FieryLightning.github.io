@@ -64,6 +64,8 @@ addEventListener('pointerdown', (e) => {
   if (!e.target.closest('a, button, input, [role="button"], .card')) sfx.parry();
 }, { passive: true });
 addEventListener('keydown', () => sfx.unlock(), { passive: true });
+// a touch only counts as a user gesture when the finger lifts, so wake audio there too
+addEventListener('pointerup', () => sfx.unlock(), { passive: true });
 
 // ── hero ─────────────────────────────────────────────────────
 $('#hero-name-sr').textContent = profile.handle;
