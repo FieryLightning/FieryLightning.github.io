@@ -39,6 +39,14 @@ Everything lives in **`js/data.js`**:
 
 Logos go in `assets/logos/`. Each project also gets an ink drawing on Off the Piste: `assets/ink/<project id>.svg` (240×180, strokes only, one `class="accent"` path in vermillion; paths draw in document order). Counts, headings, the scoreboard and the terminal all update from the data.
 
+## Cache versions
+
+GitHub Pages lets browsers reuse files for 10 minutes, so right after a deploy a visitor can get the new HTML with an old script. Every CSS/JS link and import carries a version (`?v=10`). After changing any CSS or JS, bump it everywhere in one go:
+
+```bash
+grep -rl '?v=10' --include='*.html' --include='*.js' . | xargs sed -i '' 's/?v=10/?v=11/g'
+```
+
 ## Preview locally
 
 ES modules don't load from `file://`, so serve the folder:

@@ -1,11 +1,11 @@
-import { profile, projects, loadout } from './data.js';
-import { createField } from './field.js';
-import { createBlade } from './blade.js';
-import { sfx } from './audio.js';
-import { renderSeg } from './seg.js';
-import { createTerminal } from './terminal.js';
-import { createDrill } from './reflex.js';
-import { waitForGate } from './gate.js';
+import { profile, projects, loadout } from './data.js?v=10';
+import { createField } from './field.js?v=10';
+import { createBlade } from './blade.js?v=10';
+import { sfx } from './audio.js?v=10';
+import { renderSeg } from './seg.js?v=10';
+import { createTerminal } from './terminal.js?v=10';
+import { createDrill } from './reflex.js?v=10';
+import { waitForGate } from './gate.js?v=10';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];

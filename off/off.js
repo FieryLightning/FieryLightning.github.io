@@ -6,8 +6,11 @@
 //     position, threading through the margins and the drawings
 // ─────────────────────────────────────────────────────────────
 
-import { profile, projects, loadout, offPiste } from '../js/data.js';
+import { profile, projects, loadout, offPiste } from '../js/data.js?v=10';
 
+// the ?v= this script was loaded with; drawings are fetched with the same one
+// so a page never mixes files from two deploys (GitHub Pages caches for 10 min)
+const VERSION = new URL(import.meta.url).search;
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -87,7 +90,7 @@ const SEAL = `<svg viewBox="0 0 100 100">
 const inkCache = new Map();
 async function loadInk(fig) {
   const name = fig.dataset.ink;
-  if (!inkCache.has(name)) inkCache.set(name, fetch(`../assets/ink/${name}.svg`).then((r) => (r.ok ? r.text() : '')));
+  if (!inkCache.has(name)) inkCache.set(name, fetch(`../assets/ink/${name}.svg${VERSION}`).then((r) => (r.ok ? r.text() : '')));
   const svgText = await inkCache.get(name);
   if (!svgText) return;
   fig.innerHTML = svgText;
@@ -149,9 +152,10 @@ function waypoints() {
   const runs = [[]];
   const add = (x, y) => runs[runs.length - 1].push({ x, y });
 
-  const nib = box($('.ink-nib'));
-  if (narrow) add(lane, nib.b - 10);
-  else add(nib.l + (nib.w * 232) / 240, nib.t + (nib.h * 172) / 180);
+  // always leave from the pen's writing tip; on phones the next point
+  // is the margin lane, so the first curve sweeps from the tip to it
+  const pen = box($('.ink-nib'));
+  add(pen.l + (pen.w * 232) / 240, pen.t + (pen.h * 172) / 180);
 
   for (const el of $$('[data-thread], .ink-sabre')) {
     const b = box(el);
