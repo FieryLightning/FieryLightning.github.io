@@ -38,6 +38,18 @@ export const loadout = [
 
 export const projects = [
   {
+    id: 'the-dive',
+    name: 'The Dive',
+    tagline: 'Learning AI, by depth',
+    description:
+      'A hand-picked reading list for learning AI, organised by depth instead of category: five zones from the Tide Pool to Build Your Own Submarine, 40 entries. One file, no build step, no tracking.',
+    stack: ['Single-file HTML', 'CSS', 'GitHub Pages', 'No tracking'],
+    logo: 'assets/logos/the-dive.svg',
+    accent: '#2fd4ff',
+    url: 'https://fierylightning.github.io/the-dive/',
+    source: 'https://github.com/FieryLightning/the-dive',
+  },
+  {
     id: 'studyarea',
     name: 'StudyArea',
     tagline: 'Offline-first AI study coach',
@@ -47,6 +59,17 @@ export const projects = [
     logo: 'assets/logos/studyarea.svg',
     accent: '#91b56e',
     url: 'https://studyarea.vercel.app',
+  },
+  {
+    id: 'field-guide',
+    name: 'AI Coding Field Guide',
+    tagline: 'Your first app, with an AI pair',
+    description:
+      'A mobile-first, offline-ready guide to building a first web app with Codex or Claude Code. Pick your tool at the top and every step, prompt and command adapts to it.',
+    stack: ['React 19', 'TypeScript', 'Vite', 'PWA', 'Offline mode'],
+    logo: 'assets/logos/ai-field-guide.png',
+    accent: '#c4410b',
+    url: 'https://ai-coding-field-guide.vercel.app',
   },
   {
     id: 'clearsteps',
@@ -81,28 +104,5 @@ export const projects = [
     accent: '#2f7aa8',
     privateNote: 'Runs on your own machine',
     source: 'https://github.com/FieryLightning/KevCal',
-  },
-  {
-    id: 'field-guide',
-    name: 'AI Coding Field Guide',
-    tagline: 'Your first app, with an AI pair',
-    description:
-      'A mobile-first, offline-ready guide to building a first web app with Codex or Claude Code. Pick your tool at the top and every step, prompt and command adapts to it.',
-    stack: ['React 19', 'TypeScript', 'Vite', 'PWA', 'Offline mode'],
-    logo: 'assets/logos/ai-field-guide.png',
-    accent: '#c4410b',
-    url: 'https://ai-coding-field-guide.vercel.app',
-  },
-  {
-    id: 'the-dive',
-    name: 'The Dive',
-    tagline: 'Learning AI, by depth',
-    description:
-      'A hand-picked reading list for learning AI, organised by depth instead of category: five zones from the Tide Pool to Build Your Own Submarine, 40 entries. One file, no build step, no tracking.',
-    stack: ['Single-file HTML', 'CSS', 'GitHub Pages', 'No tracking'],
-    logo: 'assets/logos/the-dive.svg',
-    accent: '#2fd4ff',
-    url: 'https://fierylightning.github.io/the-dive/',
-    source: 'https://github.com/FieryLightning/the-dive',
   },
 ];
