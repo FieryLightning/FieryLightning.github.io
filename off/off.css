@@ -59,11 +59,11 @@ main { position: relative; z-index: 2; overflow-x: clip; }
 /* ── bar ────────────────────────────────────────────────────── */
 .bar {
   position: fixed; inset: 0 0 auto; z-index: 40;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 20px var(--gutter);
+  display: flex; align-items: center; justify-content: flex-end;
+  padding: 20px var(--gutter); pointer-events: none;
   background: linear-gradient(var(--paper) 55%, rgba(243, 238, 228, .8) 75%, rgba(243, 238, 228, 0));
 }
-.bar-name { font: 400 24px/1 var(--serif); text-decoration: none; letter-spacing: -.01em; }
+.bar a { pointer-events: auto; }
 .bar-mode {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 8px 15px 8px 11px; border-radius: 999px;
@@ -101,8 +101,6 @@ h2 { margin: 0; font: 400 clamp(54px, 7.6vw, 116px)/.92 var(--serif); letter-spa
 .ink .accent { stroke: var(--vermillion); }
 
 /* ── note ───────────────────────────────────────────────────── */
-.note { max-width: 760px; margin: 10vh auto 0; padding: 0 var(--gutter); }
-.note-body p { margin: 0 0 1em; font-size: clamp(21px, 1.7vw, 25px); line-height: 1.55; color: var(--ink-2); }
 
 /* ── projects ───────────────────────────────────────────────── */
 .works { margin-top: 20vh; }
@@ -117,6 +115,7 @@ h2 { margin: 0; font: 400 clamp(54px, 7.6vw, 116px)/.92 var(--serif); letter-spa
 .plate.flip .ink { order: 2; }
 .plate h3 { margin: 0; font: 400 clamp(46px, 5.2vw, 76px)/1 var(--serif); letter-spacing: -.015em; }
 .plate-tag { margin: 8px 0 0; font: italic 400 clamp(21px, 1.7vw, 25px)/1.35 var(--text); color: var(--ink-2); }
+.plate-role { margin: 10px 0 0; font: 400 16px/1.4 var(--text); color: var(--muted); }
 .plate-desc { margin: 20px 0 0; max-width: 46ch; font-size: 18.5px; line-height: 1.7; color: var(--ink-2); }
 .plate-stack { margin: 20px 0 0; font: 400 12px/1.9 var(--mono); color: var(--muted); }
 .plate-stack i { font-style: normal; margin: 0 .25em; opacity: .5; }

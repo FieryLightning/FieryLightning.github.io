@@ -55,7 +55,7 @@ export function createTerminal({ root, profile, projects, loadout, actions }) {
     whoami: {
       desc: 'who built this',
       run() {
-        print(`<span class="t-a">${esc(profile.name)}</span> <span class="t-m">(${esc(profile.handle)} · @${esc(profile.github)})</span>`);
+        print(`<span class="t-a">${esc(profile.name)}</span> <span class="t-m">(@${esc(profile.github)})</span>`);
         print(`${esc(profile.role)}. ${esc(profile.education)}.`);
         print(`fences <span class="t-c">${esc(profile.weapon.toLowerCase())}</span>.`);
       },
@@ -172,7 +172,7 @@ export function createTerminal({ root, profile, projects, loadout, actions }) {
 
   function exec(line) {
     const raw = line.trim();
-    print(`<span class="t-ps">kyuan@piste:~$</span> ${esc(raw)}`, 'echo');
+    print(`<span class="t-ps">guest@piste:~$</span> ${esc(raw)}`, 'echo');
     if (!raw) return;
     history.push(raw);
     hIdx = history.length;

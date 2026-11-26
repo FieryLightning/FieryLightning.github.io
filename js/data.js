@@ -18,25 +18,15 @@ export const profile = {
   educationShort: 'CS graduate, UW–Madison',
   role: 'I build AI tools, apps & platforms',
   weapon: 'Sabre',
-  taglines: [
-    'currently developing FormuAI',
-    'green lamp = live, red lamp = private',
-    'swipe fast to cut the field',
-    'press ` for a terminal',
-  ],
   bio: [
-    "I'm currently developing FormuAI, a drug-formulation platform I took over. I've also built a study coach that works offline, a tool that turns how-to videos into written guides and can run entirely on a Mac, and a calendar reader that won't guess a date.",
-    'I fence sabre. It is the fastest weapon in fencing: the whole target above the waist is open, the edge counts as much as the point, and the fencer who commits first holds right of way.',
+    'Sabre is the fastest weapon in fencing: the whole target above the waist is open, the edge counts as much as the point, and the fencer who commits first holds right of way.',
   ],
 };
 
-// Copy for the calm mode, Off the Piste (off/). Projects, loadout and
-// contact details are shared with the main page.
+// Wording used only by the calm mode, Off the Piste (off/). Projects,
+// tools and contact details are shared with the main page.
 export const offPiste = {
   line: 'I studied computer science at UW–Madison. I build AI tools, apps and platforms.',
-  note: [
-    "I'm currently developing FormuAI, a drug-formulation platform I took over. The rest of what I've built is below.",
-  ],
   coda: 'I also fence sabre.',
 };
 

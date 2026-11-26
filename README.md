@@ -1,6 +1,6 @@
-# KYUAN · PISTE//OS
+# Profile site with two modes
 
-Personal profile site: AI tools and apps I've built, themed around sabre fencing.
+A personal profile site for showing projects, themed around sabre fencing.
 Static files only (HTML, CSS, ES modules, SVG), so it runs on GitHub Pages as is. No build step, no dependencies.
 
 ## Two modes
@@ -21,7 +21,7 @@ Both options are plain links, so the chooser works without JavaScript. The GPU f
 | Sound | Web Audio synthesis, no audio files: blade "shing", parry clank, scoring-box buzzer. Off by default; toggle **SND** in the HUD. |
 | Scoreboard | 7-segment SVG renderer styled like a fencing scoring apparatus. Red = private builds, green = live builds, plus a bout clock. |
 | Piste navigation | The page is a 14 m fencing strip (correct en garde lines, centre line and warning zones). A fencer marker advances as you scroll and lunges while you move. |
-| Terminal | Press <kbd>`</kbd>. Try `help`, `ls`, `open studyarea`, `info kevcal`, `allez`, `drill`. Tab completes, ↑/↓ for history. |
+| Terminal | Press <kbd>`</kbd>. Try `help`, `ls`, `open <project id>`, `info <project id>`, `allez`, `drill`. Tab completes, ↑/↓ for history. |
 | Reflex drill | Five-round reaction game. Timed from the frame the lamp is painted (double `requestAnimationFrame`) to the input event's own timestamp. Go early and you get a yellow card. |
 | Filters | View Transitions API animates the grid when you filter LIVE / PRIVATE. |
 | Easter eggs | Click the name. Konami code. `sudo` in the terminal. |
@@ -32,9 +32,9 @@ Respects `prefers-reduced-motion` (no intro, calmer field, no reveal animations)
 
 Everything lives in **`js/data.js`**:
 
-- `profile`: name, handle, GitHub, taglines, bio. Set `email` to show a mail button.
+- `profile`: name, handle, links, education, bio. Set `email` to show a mail button.
 - `loadout`: the skills grid.
-- `offPiste`: the wording used only by Off the Piste (headline, note, closing line). `off/index.html` repeats it as static text for no-JS visitors.
+- `offPiste`: the wording used only by Off the Piste (headline, closing line). `off/index.html` repeats it as static text for no-JS visitors.
 - `projects`: one entry per build. **Give a project a `url` and it shows as LIVE (green lamp, clickable). Leave `url` out and it shows as text only (red lamp).** `source` adds an optional public repo link.
 
 Logos go in `assets/logos/`. Each project also gets an ink drawing on Off the Piste: `assets/ink/<project id>.svg` (240×180, strokes only, one `class="accent"` path in vermillion; paths draw in document order). Counts, headings, the scoreboard and the terminal all update from the data.
@@ -58,25 +58,25 @@ python3 -m http.server 8000
 
 ## Deploy to GitHub Pages
 
-**User site (recommended)**, served at `https://fierylightning.github.io/`:
+**User site (recommended)**, served at `https://<username>.github.io/`:
 
 ```bash
 git init -b main
 git add .
-git commit -m "PISTE//OS: personal site"
-gh repo create FieryLightning.github.io --public --source . --push
-gh api -X POST repos/FieryLightning/FieryLightning.github.io/pages -f "source[branch]=main" -f "source[path]=/"
+git commit -m "Profile site"
+gh repo create <username>.github.io --public --source . --push
+gh api -X POST repos/<username>/<username>.github.io/pages -f "source[branch]=main" -f "source[path]=/"
 ```
 
-**Project site** (any repo name), served at `https://fierylightning.github.io/<repo>/`: same steps with a different repo name. Then set `HOME = '/<repo>/'` in `404.html`. All other paths are relative, so nothing else changes.
+**Project site** (any repo name), served at `https://<username>.github.io/<repo>/`: same steps with a different repo name. Then set `HOME = '/<repo>/'` in `404.html`. All other paths are relative, so nothing else changes.
 
-Live at **https://fierylightning.github.io/**. If you move it to a project site, update the absolute `og:image`, `og:url` and canonical URLs in `index.html`.
+If you move it to a project site, update the absolute `og:image`, `og:url` and canonical URLs in `index.html` and `off/index.html`.
 
 ## Files
 
 ```
 index.html          page structure
-404.html            "Hors piste" page
+404.html            page-not-found page
 css/style.css       all styles
 js/main.js          wiring: pointer, intro, cards, nav, loop
 js/field.js         WebGL2 transform-feedback particle field
@@ -91,4 +91,4 @@ off/                Off the Piste: index.html, off.css, off.js (ink thread, draw
 assets/             logos, brand mark, art, ink drawings, icon sprite, social card
 ```
 
-Brand mark, The Dive logo, sabre, fencers, piste, ink drawings, icon sprite and social card: original SVGs drawn by Codex from a design brief. The other app logos come from each app's own repo.
+Brand mark, sabre, fencers, piste, ink drawings, icon sprite and social card: original SVGs drawn by Codex from a design brief. App logos come from each app's own repo.

@@ -6,7 +6,7 @@
 //     position, threading through the margins and the drawings
 // ─────────────────────────────────────────────────────────────
 
-import { profile, projects, loadout, offPiste } from '../js/data.js?v=11';
+import { profile, projects, loadout, offPiste } from '../js/data.js?v=12';
 
 // the ?v= this script was loaded with; drawings are fetched with the same one
 // so a page never mixes files from two deploys (GitHub Pages caches for 10 min)
@@ -26,7 +26,6 @@ const priv = projects.filter((p) => !p.url);
 // ── content ──────────────────────────────────────────────────
 function fill() {
   $('#hero-line').textContent = offPiste.line;
-  $('#note').innerHTML = offPiste.note.map((p) => `<p>${esc(p)}</p>`).join('');
 
   $('#works-sub').textContent =
     `${cap(say(projects.length))} projects. ${cap(say(live.length))} ${live.length === 1 ? 'is' : 'are'} live` +
@@ -43,6 +42,7 @@ function fill() {
         <div class="plate-text">
           <h3>${esc(p.name)}</h3>
           <p class="plate-tag">${esc(p.tagline)}</p>
+          ${p.role ? `<p class="plate-role">${esc(p.role)}</p>` : ''}
           <p class="plate-desc">${esc(p.description)}</p>
           <p class="plate-stack">${p.stack.map(esc).join(' <i>·</i> ')}</p>
           <p class="plate-links">${links.join('')}</p>

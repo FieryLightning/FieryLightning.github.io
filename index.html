@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=12">
   <script>
     document.documentElement.classList.add('js');
     var mode = new URLSearchParams(location.search).get('mode');
@@ -32,7 +32,7 @@
         document.documentElement.classList.add('intro-seen');
     } catch (e) {}
   </script>
-  <script type="module" src="js/main.js?v=11"></script>
+  <script type="module" src="js/main.js?v=12"></script>
 </head>
 <body>
   <a class="skip" href="#arsenal">Skip to projects</a>
@@ -68,7 +68,6 @@
     <div class="intro-half intro-a"></div>
     <div class="intro-half intro-b"></div>
     <div class="intro-stage">
-      <div class="intro-sys">KYUAN</div>
       <div class="intro-call" id="intro-call">&nbsp;</div>
       <div class="intro-lamps"><i class="lamp lamp-red"></i><i class="lamp lamp-green"></i></div>
       <div class="intro-skip">press any key to skip</div>
@@ -76,9 +75,8 @@
   </div>
 
   <header class="hud">
-    <a class="hud-brand" href="#en-garde" aria-label="KYUAN, back to top">
+    <a class="hud-brand" href="#en-garde" aria-label="Back to top">
       <img src="assets/brand/mark.svg" alt="" width="30" height="30">
-      <span>KYUAN</span>
     </a>
 
     <nav class="piste-nav" aria-label="Sections" data-moving="false">
@@ -117,11 +115,9 @@
             <span class="sn-b" aria-hidden="true">KYUAN</span>
             <svg class="sn-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="-6" y1="65.3" x2="106" y2="40.7" vector-effect="non-scaling-stroke"/></svg>
           </h1>
-          <p class="hero-role" id="hero-role">I build AI tools, apps &amp; platforms. Sabre fencer.</p>
-          <p class="typer" aria-live="off"><span class="prompt">&gt;</span> <span id="typer"></span><span class="caret" aria-hidden="true"></span></p>
+          <p class="hero-role" id="hero-role">I build AI tools, apps &amp; platforms.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="#arsenal"><span>Enter the piste</span><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-arrow-down"></use></svg></a>
-            <button class="btn btn-ghost" type="button" data-open-term><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-terminal"></use></svg><span>Open terminal</span><kbd>`</kbd></button>
           </div>
         </div>
 
@@ -143,12 +139,11 @@
               <span class="sb-label">LIVE</span>
             </div>
           </div>
-          <div class="sb-foot" id="sb-foot">06 BUILDS · P1 · SABRE</div>
         </aside>
       </div>
 
       <img class="hero-sabre" src="assets/art/sabre.svg" alt="" aria-hidden="true" width="1200" height="160">
-      <p class="hint"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-sabre"></use></svg> swipe fast to cut the field · click to parry · <kbd>`</kbd> for terminal</p>
+      <p class="hint"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-sabre"></use></svg> swipe fast to cut the field · click to parry</p>
     </section>
 
 
@@ -156,14 +151,14 @@
     <section id="arsenal" class="sec">
       <header class="sec-head" data-reveal>
         <span class="sec-idx"><i></i> ARSENAL</span>
-        <h2 id="arsenal-title">Six projects.</h2>
+        <h2 id="arsenal-title">Projects.</h2>
         <p>Things I've built or work on. <b class="g">Green lamp</b>: live, double-click to open. <b class="r">Red lamp</b>: private or runs locally, so there's no public link.</p>
       </header>
 
       <div class="filters" role="group" aria-label="Filter builds">
-        <button type="button" data-filter="all" aria-pressed="true">ALL <span class="n">06</span></button>
-        <button type="button" data-filter="live" aria-pressed="false"><i class="lamp lamp-green"></i>LIVE <span class="n">04</span></button>
-        <button type="button" data-filter="private" aria-pressed="false"><i class="lamp lamp-red"></i>PRIVATE <span class="n">02</span></button>
+        <button type="button" data-filter="all" aria-pressed="true">ALL</button>
+        <button type="button" data-filter="live" aria-pressed="false"><i class="lamp lamp-green"></i>LIVE</button>
+        <button type="button" data-filter="private" aria-pressed="false"><i class="lamp lamp-red"></i>PRIVATE</button>
       </div>
 
       <div class="grid" id="grid"></div>
@@ -196,11 +191,8 @@
             <img class="pcard-mark" src="assets/brand/mark.svg" alt="" width="44" height="44">
           </div>
           <dl class="pcard-stats">
-            <div><dt>Name</dt><dd id="pc-name">Kevin Y.</dd></div>
-            <div><dt>GitHub</dt><dd><a id="pc-handle" href="https://github.com/FieryLightning" target="_blank" rel="noopener">@FieryLightning</a></dd></div>
-                        <div><dt>Education</dt><dd id="pc-edu">CS graduate, UW–Madison</dd></div>
+            <div><dt>Education</dt><dd id="pc-edu">CS graduate, UW–Madison</dd></div>
             <div><dt>Fencing</dt><dd id="pc-weapon">Sabre</dd></div>
-                        <div><dt>Projects</dt><dd id="pc-builds">6 built · 4 live</dd></div>
           </dl>
         </article>
 
@@ -217,7 +209,7 @@
       <header class="sec-head" data-reveal>
         <span class="sec-idx"><i></i> REFLEX DRILL</span>
         <h2>Reaction test.</h2>
-        <p>Sabre is the fastest weapon in fencing. Wait for the green lamp, then click, tap or hit <kbd>Space</kbd>. Five rounds. Go early and you get a yellow card.</p>
+        <p>Wait for the green lamp, then click, tap or hit <kbd>Space</kbd>. Five rounds. Go early and you get a yellow card.</p>
       </header>
 
       <div class="drill" data-reveal>
@@ -257,7 +249,7 @@
       </div>
 
       <footer class="foot">
-        <span>© <span id="year">2026</span> KYUAN</span>
+        <span>© <span id="year">2026</span></span>
       </footer>
     </section>
   </main>
@@ -267,11 +259,11 @@
   <div id="term" class="term" role="dialog" aria-label="Terminal" hidden>
     <div class="term-bar">
       <span class="term-dots"><i></i><i></i><i></i></span>
-      <span>kyuan@piste: ~</span>
+      <span>guest@piste: ~</span>
       <button class="term-x" type="button" aria-label="Close terminal">esc ✕</button>
     </div>
     <div class="term-out" aria-live="polite"></div>
-    <label class="term-line"><span class="t-ps">kyuan@piste:~$</span><input class="term-in" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command"></label>
+    <label class="term-line"><span class="t-ps">guest@piste:~$</span><input class="term-in" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command"></label>
   </div>
 </body>
 </html>

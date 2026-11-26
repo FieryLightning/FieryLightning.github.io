@@ -1,11 +1,11 @@
-import { profile, projects, loadout } from './data.js?v=11';
-import { createField } from './field.js?v=11';
-import { createBlade } from './blade.js?v=11';
-import { sfx } from './audio.js?v=11';
-import { renderSeg } from './seg.js?v=11';
-import { createTerminal } from './terminal.js?v=11';
-import { createDrill } from './reflex.js?v=11';
-import { waitForGate } from './gate.js?v=11';
+import { profile, projects, loadout } from './data.js?v=12';
+import { createField } from './field.js?v=12';
+import { createBlade } from './blade.js?v=12';
+import { sfx } from './audio.js?v=12';
+import { renderSeg } from './seg.js?v=12';
+import { createTerminal } from './terminal.js?v=12';
+import { createDrill } from './reflex.js?v=12';
+import { waitForGate } from './gate.js?v=12';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -71,7 +71,7 @@ addEventListener('pointerup', () => sfx.unlock(), { passive: true });
 // ── hero ─────────────────────────────────────────────────────
 $('#hero-name-sr').textContent = profile.handle;
 $$('.sn-a, .sn-b').forEach((el) => { el.textContent = profile.handle; });
-$('#hero-role').innerHTML = `${esc(profile.role)}.<br>${esc(profile.educationShort)}. ${esc(profile.weapon)} fencer.`;
+$('#hero-role').textContent = `${profile.role}.`;
 
 function slashName() {
   const n = $('#name');
@@ -98,7 +98,6 @@ function screenSlash() {
 // scoreboard
 renderSeg($('#sb-red'), pad2(priv.length));
 renderSeg($('#sb-green'), pad2(live.length));
-$('#sb-foot').textContent = `${pad2(projects.length)} BUILDS · P1 · ${profile.weapon.toUpperCase()}`;
 const born = performance.now();
 const tickClock = () => {
   const s = Math.floor((performance.now() - born) / 1000);
@@ -107,25 +106,7 @@ const tickClock = () => {
 tickClock();
 setInterval(tickClock, 1000);
 
-async function typer() {
-  const el = $('#typer');
-  const lines = profile.taglines;
-  if (reduced) { el.textContent = lines[0]; return; }
-  for (let i = 0; ; i++) {
-    const s = lines[i % lines.length];
-    for (let k = 1; k <= s.length; k++) { el.textContent = s.slice(0, k); await sleep(30 + Math.random() * 45); }
-    await sleep(2400);
-    for (let k = s.length; k >= 0; k--) { el.textContent = s.slice(0, k); await sleep(14); }
-    await sleep(260);
-  }
-}
-
 // ── arsenal ──────────────────────────────────────────────────
-const WORDS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
-$('#arsenal-title').textContent = `${WORDS[projects.length] ?? projects.length} projects.`;
-$('[data-filter="all"] .n').textContent = pad2(projects.length);
-$('[data-filter="live"] .n').textContent = pad2(live.length);
-$('[data-filter="private"] .n').textContent = pad2(priv.length);
 
 function cardHTML(p, i) {
   const isLive = !!p.url;
@@ -230,12 +211,8 @@ function applyFilter(f) {
 $$('.filters button').forEach((b) => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
 
 // ── salle ────────────────────────────────────────────────────
-$('#pc-name').textContent = profile.name;
-$('#pc-handle').textContent = '@' + profile.github;
-$('#pc-handle').href = profile.githubUrl;
 $('#pc-edu').textContent = profile.education;
 $('#pc-weapon').textContent = profile.weapon;
-$('#pc-builds').textContent = `${projects.length} built · ${live.length} live`;
 $('#bio').innerHTML = profile.bio.map((p) => `<p>${esc(p)}</p>`).join('');
 $('#loadout').innerHTML = loadout.map((s) => `
   <div class="slot" data-reveal>
@@ -432,7 +409,6 @@ function afterIntro(quick) {
     if (!reduced) slashName();
     field?.shock(innerWidth * 0.3, innerHeight * 0.45, 1.2);
   }, quick ? 350 : 60);
-  typer();
 }
 
 updatePiste();
