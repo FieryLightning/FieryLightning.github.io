@@ -68,7 +68,7 @@ addEventListener('keydown', () => sfx.unlock(), { passive: true });
 // ── hero ─────────────────────────────────────────────────────
 $('#hero-name-sr').textContent = profile.handle;
 $$('.sn-a, .sn-b').forEach((el) => { el.textContent = profile.handle; });
-$('#hero-role').innerHTML = `${esc(profile.name)} — ${esc(profile.role)}.<br>${esc(profile.weapon)} fencer · ${esc(profile.educationShort)}.`;
+$('#hero-role').innerHTML = `${esc(profile.name)} — ${esc(profile.role)}.<br>${esc(profile.educationShort)} · ${esc(profile.weapon)} fencer.`;
 
 function slashName() {
   const n = $('#name');

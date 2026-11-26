@@ -13,8 +13,8 @@ export const profile = {
   github: 'FieryLightning',
   githubUrl: 'https://github.com/FieryLightning',
   email: '', // optional: add an address to show a "mail" button in the Salute section
-  education: 'CS — University of Wisconsin–Madison',
-  educationShort: 'CS @ UW–Madison',
+  education: 'CS graduate, University of Wisconsin–Madison',
+  educationShort: 'CS graduate, UW–Madison',
   role: 'Builder of AI tools & apps',
   weapon: 'Sabre',
   taglines: [
